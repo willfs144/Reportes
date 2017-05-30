@@ -1,0 +1,115 @@
+///// perfiles 
+
+db.perfils.insert({ "_id" : ObjectId("5891f357e62b80cf1503eb9f"), "nombre" : "Fiscal" })
+db.perfils.insert({ "_id" : ObjectId("5898c4f40fa62ed7ff18570f"), "nombre" : "Asistente" })
+db.perfils.insert({ "_id" : ObjectId("5898c4f40fa62ed7ff185710"), "nombre" : "Coordinador" })
+db.perfils.insert({ "_id" : ObjectId("5898c4f40fa62ed7ff185711"), "nombre" : "Director" })
+
+
+
+////// INSERTAR CARGOS USUARIOS RESPORTES //////
+
+///DIRECTIVOS
+db.cargos.insert({nombre:"Consejero Judicial"}) 
+db.cargos.insert({nombre:"Director Nacional I"}) 
+db.cargos.insert({nombre:"Director Nacional II"}) 
+db.cargos.insert({nombre:"Director Estratégico I"}) 
+db.cargos.insert({nombre:"Director Estratégico II"}) 
+db.cargos.insert({nombre:"Director Especializado"}) 
+db.cargos.insert({nombre:"Director Seccional de la Fiscalía General de la Nación"})
+db.cargos.insert({nombre:"Jefe de Departamento"})
+db.cargos.insert({nombre:"Subdirector Nacional"})
+db.cargos.insert({nombre:"Subdirector Seccional"})
+
+//ASESORES
+db.cargos.insert({nombre:"Asesor I"})
+db.cargos.insert({nombre:"Asesor II"})
+db.cargos.insert({nombre:"Asesor De Despacho"})
+
+///PROFESIONAL
+db.cargos.insert({nombre:"Fiscal Delegado ante Jueces Municipales y Promiscuos"})
+db.cargos.insert({nombre:"Fiscal Delegado ante Jueces de Circuito"})
+db.cargos.insert({nombre:"Fiscal Delegado ante Jueces Penales de Circuito Especializados"})
+db.cargos.insert({nombre:"Fiscal Delegado ante Tribunal del Distrito"})
+db.cargos.insert({nombre:"Fiscal Auxiliar ante La Corte Suprema de Justicia"})
+db.cargos.insert({nombre:"Profesional de Gestión I"})
+db.cargos.insert({nombre:"Profesional de Gestión II"})
+db.cargos.insert({nombre:"Profesional de Gestión III"})
+db.cargos.insert({nombre:"Profesional Especializado I"})
+db.cargos.insert({nombre:"Profesional Especializado II"})
+db.cargos.insert({nombre:"Profesional Experto"})
+db.cargos.insert({nombre:"Profesional Investigador I"})
+db.cargos.insert({nombre:"Profesional Investigador II"})
+db.cargos.insert({nombre:"Profesional Investigador III"})
+db.cargos.insert({nombre:"Investigador Experto"})
+/// TÉCNICO
+db.cargos.insert({nombre:"Agente de Protección y Seguridad I"})
+db.cargos.insert({nombre:"Agente de Protección y Seguridad II"})
+db.cargos.insert({nombre:"Agente de Protección y Seguridad III"})
+db.cargos.insert({nombre:"Agente de Protección y Seguridad IV"})
+db.cargos.insert({nombre:"Asistente de Fiscal I"})
+db.cargos.insert({nombre:"Asistente de Fiscal II"})
+db.cargos.insert({nombre:"Asistente de Fiscal III"})
+db.cargos.insert({nombre:"Asistente de Fiscal IV"})
+db.cargos.insert({nombre:"Secretario Ejecutivo"})
+db.cargos.insert({nombre:"Técnico I"})
+db.cargos.insert({nombre:"Técnico II"})
+db.cargos.insert({nombre:"Técnico III"})
+db.cargos.insert({nombre:"Técnico I"})
+db.cargos.insert({nombre:"Técnico II"})
+db.cargos.insert({nombre:"Técnico III"})
+db.cargos.insert({nombre:"Técnico IV"})
+//ASISTENCIAL 
+db.cargos.insert({nombre:"Asistente I"})
+db.cargos.insert({nombre:"Asistente II"})
+db.cargos.insert({nombre:"Auxiliar I"})
+db.cargos.insert({nombre:"Auxiliar II"})
+db.cargos.insert({nombre:"Conductor I"})
+db.cargos.insert({nombre:"Conductor II"})
+db.cargos.insert({nombre:"Conductor III"})
+db.cargos.insert({nombre:"Secretario Administrativo I"})
+db.cargos.insert({nombre:"Secretario Administrativo II"})
+db.cargos.insert({nombre:"Secretario Administrativo III"})
+
+//sedes
+db.sedes.insert({_id:ObjectId("589ceac40fa62ed7ff18572b"),nombre:"Director de Fiscalías Nacionales"})
+db.sedes.insert({nombre:"Director Nacional de Articulación de Fiscalías Nacionales Especializadas"})
+
+//Dependencias 
+
+db.dependencias.insert({_id: ObjectId("58a32b1a0fa62ed7ff18578e"), nombre:"Protección de la Propiedad Intelectual, las Telecomunicaciones, los Bienes Culturales de la Nación y la Moneda Legal", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
+db.dependencias.insert({nombre:"Protección de los Recursos Naturales y el Medio Ambiente", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
+db.dependencias.insert({nombre:"Desaparición y Desplazamiento Forzado", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
+db.dependencias.insert({nombre:"Corrupción en Administración de Justicia", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
+db.dependencias.insert({nombre:"Protección a los Mecanismos de Participación Democrática", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
+db.dependencias.insert({nombre:"Departamento Interceptación de las Telecomunicaciones", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
+db.dependencias.insert({nombre:"Centro Estratégico de Valoración y Análisis Probatorio", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
+
+
+db.oficinas.insert({nombre:"Fiscalia 1", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Fiscalia 2", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Fiscalia 3", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Fiscalia 4", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Fiscalia 5", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Fiscalia 6", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Fiscalia 8", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Fiscalia 9", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Fiscalia 10", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Fiscalia 14", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Fiscalia 28", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Fiscalia 68", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+db.oficinas.insert({nombre:"Coordinación", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
+
+db.estados.insert({"_id":01, nombre:'Usuario'})
+db.estados.insert({"_id":02, nombre:'Activo', tipo:01})
+db.estados.insert({"_id":03, nombre:'Inactivo', tipo:01})
+db.estados.insert({"_id":10, nombre:'Actor'})
+db.estados.insert({"_id":11, nombre:'Activo', tipo:10})
+db.estados.insert({"_id":12, nombre:'Inactivo', tipo:10})
+db.estados.insert({"_id":20, nombre:'Noticia'})
+db.estados.insert({"_id":21, nombre:'Activo', tipo:20})
+db.estados.insert({"_id":22, nombre:'Inactivo', tipo:20})
+
+ 
+
+

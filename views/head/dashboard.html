@@ -1,0 +1,70 @@
+<div ng-controller="AppCtrl" layout="column" ng-cloak>
+	<md-toolbar class="md-hue-2">
+		<div class="md-toolbar-tools">
+			<md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
+				<md-icon md-svg-icon="public/icons/menu.svg"></md-icon>
+			</md-button>        
+			<span flex></span>
+			<md-button class="md-icon-button" aria-label="Favorite">
+				<md-icon md-svg-icon="public/icons/browser.svg" style="color: greenyellow;"></md-icon>
+			</md-button>
+			<md-button class="md-icon-button" aria-label="More">
+				<md-icon md-svg-icon="public/icons/account.svg"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<section layout="row" flex >
+	<md-sidenav class="md-sidenav-left color_azul" md-component-id="left" md-disable-backdrop md-whiteframe="4">
+		<md-toolbar class="md-hue-2">
+			<div class="md-toolbar-tools">
+				 <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
+						<md-icon md-svg-icon="public/icons/close.svg"></md-icon>
+				</md-button>
+			</div>
+			<div class="md-toolbar-tools">
+				<span flex></span>
+				<div layout="column" class="md-toolbar-tools-bottom inset ">
+					<user-avatar></user-avatar>										
+					<div><span>Usuario: </span>{{user.correo}}</div>
+				</div>
+			</div>
+		</md-toolbar>		
+		<md-content layout-margin class="color_azul">			
+			<md-list>
+				<nav>					
+					<md-subheader  class="color_azul"><a><b>Proceso</b></a></md-subheader>
+					<li>
+						<md-item ng-repeat="item in menu">
+						<a ng-href="#/{{item.link}}">
+							<md-item-content md-ink-ripple layout="row" layout-align="start center">
+								<div class="inset">
+									<ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+								</div>
+								<div class="inset">{{item.title}}</div>				
+							</md-item-content>
+						</a>						
+						</md-item>
+					</li>
+					<md-divider></md-divider>
+					<md-subheader class="color_azul"><a><b>Audiencias</b></a></md-subheader>
+					<li>
+						<md-item ng-repeat="item in admin">
+							<a>
+								<md-item-content md-ink-ripple layout="row" layout-align="start center">
+									<div class="inset">
+										<ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+									</div>
+									<div class="inset">{{item.title}}</div>
+								</md-item-content>
+							</a>
+						</md-item>
+					</li>
+					<md-divider></md-divider>
+					<li><md-subheader class="color_azul"><a ng-href="#/calendar"><b>Ver Programador</b></a></md-subheader></li>					
+				</nav>
+			</md-list> 
+		</md-content>
+	</md-sidenav>
+	</section>			
+</div>
+

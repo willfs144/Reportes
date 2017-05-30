@@ -1,0 +1,53 @@
+<div ng-include="'head/dashboard.html'"></div>
+<div ng-controller="initiateController"  ng-cloak>
+	<md-content flex layout-padding>			
+		<div class="container" layout="row" layout-align="center center" >		 	
+			<div class="contenedor" ng-mouseenter="procesoActive=true" ng-mouseleave="procesoActive=false">
+				<div class="box rotate" layout="colum" layout-align="center center">
+					<h4 ng-hide="procesoActive">Proceso</h4>
+					<nav ng-show="procesoActive">
+						<li>
+							<md-item ng-repeat="item in menu">
+							<a ng-href="#/{{item.link}}">
+								<md-item-content md-ink-ripple layout="row" layout-align="start center">
+									<div class="inset">
+										<ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+									</div>
+									<div class="inset">{{item.title}}</div>				
+								</md-item-content>
+							</a>						
+							</md-item>
+						</li>
+					</nav>
+				</div> 						
+			</div>
+			<div class="contenedor" ng-mouseenter="audienciasActive=true" ng-mouseleave="audienciasActive=false">
+				<div class="box rotate" layout="colum" layout-align="center center">
+					<h4 ng-hide="audienciasActive">Audiencias</h4>
+					<nav ng-show="audienciasActive">
+						<li>
+							<md-item ng-repeat="item in admin">
+								<a>
+									<md-item-content md-ink-ripple layout="row" layout-align="start center">
+										<div class="inset">
+											<ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+										</div>
+										<div class="inset">{{item.title}}</div>
+									</md-item-content>
+								</a>
+							</md-item>
+						</li>	
+					</nav>
+				</div> 
+			</div>
+			<div class="contenedor" ng-mouseenter="programadorActive=true" ng-mouseleave="programadorActive=false">  
+				<div class="box rotate" layout="colum" layout-align="center center">
+					<h4 ng-hide="programadorActive">Programador</h4>
+					<nav ng-show="programadorActive">
+						<li><a ng-href="#/calendar"><b>Ver Programador</b></a></md-subheader></li>
+					</nav>
+				</div>  
+			</div>	  	 	
+		</div>
+	</md-content>
+</div>

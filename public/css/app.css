@@ -1,0 +1,200 @@
+.reducir-top{
+	margin-top: -20px;
+}
+.right-space{
+	 margin-right: 1em;
+}
+.remove-float{
+	float: none;
+}
+.top-space-header{
+	margin-top: 20px;
+}
+.big-top-space{
+	margin-top: 50px;
+}
+.large-padding{
+	padding: 10px 15px;
+}
+.black{
+	background: #222;
+}
+.white-text{
+	color:white;
+}
+
+.img-container{
+	width: 700px;
+	max-width: 100%;
+	margin: 0 auto;	
+	text-align: center;
+}
+.img-container h1, .img-container h2{
+	text-align: left;
+	padding: 15px;
+	border-bottom: 1px solid #222;
+}
+.img-container p{
+	text-align: right;
+	font-size: 1.2em; 
+	margin-top: 1em;
+}
+img{
+	max-width: 100%;	
+}
+nav{
+	text-align: left;
+}
+nav li {
+	display: inline-block;
+	margin-right: 1em;
+	font-size: 1.1;
+}
+nav li a{
+	color:white;
+}
+nav li a:hover{
+	color:blue;
+}
+.white{
+background-color: white;
+}
+.border{
+	border:solid 1px #eee;
+}
+.tr:nth-of-type(odd){
+background-color: #eee;
+}
+.Box-form {
+  max-width:  70%;
+  width: 320px
+}
+.loginBox {
+  max-width:  70%;
+  width: 420px
+}
+
+.stretch input  {
+  width: 100%
+}
+
+ a, a:link {
+   color:white;
+    text-decoration: none;
+  }
+
+ a:hover{
+	color: blue;
+}
+.blue-text{
+	color: blue !important;
+}
+ 
+.hint {
+	left: 2px;
+	right: auto;
+	bottom: 7px;
+	/* Copy styles from ng-messages */
+	font-size: 12px;
+	line-height: 14px;
+	transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+	/* Set our own color */
+	color: #0085D7; 
+}
+.hint.ng-hide,
+.hint.ng-enter,
+.hint.ng-leave.ng-leave-active {
+	bottom: 26px;
+	opacity: 1; 
+}
+.hint.ng-leave,
+.hint.ng-enter.ng-enter-active {
+bottom: 7px;
+opacity: 0; 
+}
+
+div.padded {
+    background: #fff;
+    margin: 10px;
+    height: 550px;
+    width: 340px; 
+}
+
+.md-datepicker-input-container { 
+	display: inline-block;   
+    width: 63% !important;
+}
+
+
+
+.md-autocomplete-suggestions-container{
+    overflow-y:scroll
+}
+
+.md-autocomplete-suggestions-container .md-virtual-repeat-scroller{
+    position:static
+}
+
+.md-autocomplete-suggestions-container .md-virtual-repeat-sizer{
+    height:0 !important
+}
+
+.md-autocomplete-suggestions-container .md-virtual-repeat-offsetter{
+    position:static
+}
+
+.md-dialog-content {
+	text-align: center;
+}
+
+.tabsdemoDynamicHeight md-content {
+  background-color: transparent !important; }
+  .tabsdemoDynamicHeight md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1; }
+    .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+      background: white; }
+  .tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0; }
+
+
+/* button recolor */
+.nav-pills > li.active > a, .btn-primary {
+  background-color: #6C6C6C !important;
+  // feeling like it's a rounded corners kind of day
+  border-color: #6C6C6C !important;
+  border-radius: 25px; 
+}
+
+.contenedor{
+ 	margin: auto 70px;	
+	display: inline-block;
+	width: 200px;
+	height: 220px;
+}
+
+.box { 
+  color:white !important;
+  background: #03B0F0;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+.box:hover { 	 
+  background: #04C7F2;  
+  border-radius: 15%;
+  width: 200px;
+  height: 220px;
+
+}
+.rotate {
+  transition: all 1s ease-in-out;
+}
+.rotate:hover {
+  transition: all 0.5s ease-in-out;
+ 
+}
+
+.color_azul{
+	background: #0085D7;	
+}

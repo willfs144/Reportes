@@ -1,0 +1,148 @@
+<md-content class="top-space-header" ng-controller="signupController as ctrl" layout="column" layout-align="center center">
+	<img class="responsive-img" style="width: 150px;" src="http://www.contraloriadelmagdalena.gov.co/wp-content/uploads/2015/12/fiscalia.png" /> 
+	<h2 flex>Crear nuevo usuario </h2>
+	<form name="userForm" layout="row" layout-xs="column"class="reducir-top" layout-align="center center" layout-fill>      
+		<md-content layout="column" class="md-padding Box-form" > 
+			<md-input-container>
+				<label>Nombre</label>
+				<input  required type="text" ng-model="user.nombre">
+			</md-input-container>    
+			<md-input-container>
+				<label>Usuario</label>
+				<input  required type="text" ng-model="user.username">
+			</md-input-container>
+			<md-input-container>
+				<label>Contraseña</label>
+				<input  required type="password" ng-model="user.password">
+			</md-input-container>
+			<md-input-container>
+				<label>Confirmación de contraseña</label>
+				<input  required type="password" ng-model="user.password_confirmation">
+			</md-input-container>
+			<md-input-container flex-gt-xs>
+				<label>Fecha Nacimiento</label>
+				<md-datepicker ng-model="user.fecha_de_nacimiento"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+			</md-input-container>										      
+		</md-content> 
+		<md-content layout="column" class="md-padding Box-form" >					
+			<md-input-container>
+				<label>Cedula</label>
+				<input required type="number" ng-model="user.cedula">
+			</md-input-container>  
+			<md-input-container flex="50">
+				<label>Perfil</label>
+				<md-select name="perfil" ng-model="user.perfil" required>
+					<md-option ng-value="perfil._id" ng-repeat="perfil in perfils">{{perfil.nombre}}</md-option>			
+				</md-select>
+				<div class="errors" ng-messages="userForm.perfil.$error">
+					<div ng-message="required">Required</div>
+				</div>
+			</md-input-container>
+			<md-input-container>
+				<label>Telefono</label>
+				<input type="number" ng-model="user.telefono">
+			</md-input-container>
+			<md-content flex>
+				<md-tooltip md-direction="top">
+					Digitar con tildes
+				</md-tooltip>
+				<md-autocomplete  flex="90" required 					
+					md-input-name="cargo"
+					md-selected-item="ctrl.selectedItem"
+					md-search-text="ctrl.searchText"
+					md-items="item in ctrl.buscarCargo(ctrl.searchText)"
+					md-item-text="item.nombre"
+					md-require-match
+					md-delay="300"					
+					md-floating-label="Cargo"
+					ng-model="user.cargo"
+					ng-value="ctrl.item._id"
+					md-min-length="0"
+					md-selected-item-change=ctrl.selectedItemChangeCargo(item)>
+
+					<div layout="row" class="item" layout-align="start center">					
+						<span md-highlight-text="ctrl.searchText" name="cargo">{{item.nombre}}</span>  
+					</div>								
+				</md-autocomplete>
+			</md-content>			
+			<md-input-container flex="50">
+				<label>Sede</label>
+				<md-select  ng-disabled="!user.cargo" name="sede" id="sede" ng-model="user.sede" required>
+					<md-option ng-value="sede._id" ng-repeat="sede in sedes">{{sede.nombre}}</md-option>			
+				</md-select>
+				<div class="errors" ng-messages="userForm.sede.$error">
+					<div ng-message="required">Required</div>
+				</div>
+			</md-input-container>			
+		</md-content>
+		<md-content layout="column" class="md-padding Box-form"> 
+			<md-content flex>
+				<md-tooltip md-direction="right">
+					Digitar con tildes
+				</md-tooltip>
+				<md-autocomplete flex="90" required 
+					ng-disabled="!user.sede"								
+					md-input-name="dependencia"
+					md-selected-item="ctrl.selectedItemDependencia"
+					md-search-text="ctrl.searchTextDependencia"
+					md-items="item in ctrl.buscarDependencia(ctrl.searchTextDependencia)"
+					md-item-text="item.nombre"
+					md-require-match
+					md-delay="300"	
+					md-min-length="1"				
+					md-floating-label="Dependencia"
+					ng-model="user.dependencia"
+					ng-value="ctrl.item._id"					
+					md-selected-item-change=ctrl.selectedItemChangeDependencia(item)>
+
+					<div layout="row" class="item" layout-align="start center">					
+						<span md-highlight-text="ctrl.searchTextDependencia" name="dependencia">{{item.nombre}}</span>  
+					</div>								
+				</md-autocomplete>
+			</md-content>									
+			<md-content flex>
+				<md-tooltip md-direction="right">
+					Digitar con tildes
+				</md-tooltip>
+				<md-autocomplete flex="90" required 
+					ng-disabled="!user.dependencia"								
+					md-input-name="oficina"
+					md-selected-item="ctrl.selectedItemOficina"
+					md-search-text="ctrl.searchTextOficina"
+					md-items="item in ctrl.buscarOficina(ctrl.searchTextOficina)"
+					md-item-text="item.nombre"
+					md-require-match
+					md-delay="300"	
+					md-min-length="1"				
+					md-floating-label="Oficina"
+					ng-model="user.oficina"
+					ng-value="ctrl.item._id"					
+					md-selected-item-change=ctrl.selectedItemChangeOficina(item)>
+
+					<div layout="row" class="item" layout-align="start center">					
+						<span md-highlight-text="ctrl.searchTextOficina" name="oficina">{{item.nombre}} - {{item.ciudad.nombre}}</span>  
+					</div>								
+				</md-autocomplete>
+			</md-content>		
+			<md-input-container>
+				<label>Correo</label>
+				<input required type="email" ng-model="user.correo">
+			</md-input-container>			
+			<md-input-container>
+				<label>Direccion</label>
+				<input type="text" ng-model="user.direccion">
+			</md-input-container>
+			<md-input-container flex="50">
+				<label>Estado</label>
+				<md-select ng-disabled="!user.oficina" name="estado" ng-model="user.estado" required>
+					<md-option ng-value="estado._id" ng-repeat="estado in estados">{{estado.nombre}}</md-option>			
+				</md-select>
+				<div class="errors" ng-messages="userForm.estado.$error">
+					<div ng-message="required">Required</div>
+				</div>
+			</md-input-container>	
+		</md-content>
+	</form>	
+	<md-button ng-click="guardar()" class="md-raised md-primary reducir-top" ng-disabled="userForm.$invalid">Guardar Usuario</md-button> 
+	 {{usuario.nombre}} 
+</md-content>
