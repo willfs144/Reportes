@@ -2,128 +2,132 @@
 <div   class="md-padding" layout="row" layout-align="center center" ng-controller="addProcessController" ng-cloak>
 	<md-content flex="85">
 		<md-tabs md-dynamic-height md-border-bottom>
-			<md-tab label="Proceso" layout-align="center center" >			
-				<form  name="processForm" layout="column" layout-align="center center" ng-cloak layout-fill>
-					<h1>Agregar Proceso</h1> 
-					<md-content layout="row" layout-xs="column"  class="md-padding"  layout-align="center center"  layout-fill> 													 
+			<md-tab layout="row" label="Proceso">
+			<div layout-align="center center" layout-fill class="remove-float">			
+				<div flex></div>			
+					<form  name="processForm" layout="column" >
+						<h1>Agregar Proceso</h1> 
+						<md-content layout="row" layout-xs="column"  class="md-padding"  layout-align="letf center"  layout-fill> 													 
 
-						<md-input-container flex="25" layout-fill>
-							<label>Numero Noticia Criminal</label>
-							<input required type="number" ng-model="process.noticia">
-						</md-input-container> 
+							<md-input-container flex="25" layout-fill>
+								<label>Numero Noticia Criminal</label>
+								<input required type="number" ng-model="process.noticia">
+							</md-input-container> 
 
-						<md-button ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary" ng-disabled="processForm.$invalid">Consultar</md-button>
-						
-						<md-input-container flex-gt-xs layout-fill flex="20">
-								<label>Fecha de denuncia</label>
-								<md-datepicker ng-model="process.fecha_de_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
-						</md-input-container>
-
-					</md-content>	
-					<h3>Lugar de los hechos</h3>							
-						<md-content layout="row" layout-xs="column" flex="70"  layout-align="center center"  layout-fill>							
-
-							<md-tooltip md-direction="top">
-								Digitar con tildes
-							</md-tooltip>
-							<md-autocomplete  flex="18" required 					
-								md-input-name="Pais"
-								md-selected-item="ctrl.selectedItem"
-								md-search-text="ctrl.searchText"
-								md-items="item in ctrl.pais(ctrl.searchText)"
-								md-item-text="item.nombre"
-								md-require-match
-								md-delay="300"					
-								md-floating-label="Pais"
-								ng-model="process.pais"
-								ng-value="ctrl.item._id"
-								md-min-length="0"
-								md-selected-item-change=ctrl.selectedItemChangeCargo(item)>
-
-								<div layout="row" class="item" layout-align="start center">					
-									<span md-highlight-text="ctrl.searchText" name="pais">{{item.nombre}}</span>  
-								</div>								
-							</md-autocomplete>
-							<md-tooltip md-direction="top">
-								Digitar con tildes
-							</md-tooltip>
-							<md-autocomplete  class="md-padding" flex="18" required 					
-								md-input-name="Departamento"
-								md-selected-item="ctrl.selectedItem"
-								md-search-text="ctrl.searchText"
-								md-items="item in ctrl.departamento(ctrl.searchText)"
-								md-item-text="item.nombre"
-								md-require-match
-								md-delay="300"					
-								md-floating-label="Departamento"
-								ng-model="process.departamento"
-								ng-value="ctrl.item._id"
-								md-min-length="0"
-								md-selected-item-change=ctrl.selectedItemChangeDepartamento(item)>
-
-								<div layout="row" class="item" layout-align="start center">					
-									<span md-highlight-text="ctrl.searchText" name="departamento">{{item.nombre}}</span>  
-								</div>								
-							</md-autocomplete>
-							<md-tooltip md-direction="top">
-								Digitar con tildes
-							</md-tooltip>
-							<md-autocomplete  flex="18" required 					
-								md-input-name="Municipio"
-								md-selected-item="ctrl.selectedItem"
-								md-search-text="ctrl.searchText"
-								md-items="item in ctrl.municipio(ctrl.searchText)"
-								md-item-text="item.nombre"
-								md-require-match
-								md-delay="300"					
-								md-floating-label="Municipio"
-								ng-model="process.municipio"
-								ng-value="ctrl.item._id"
-								md-min-length="0"
-								md-selected-item-change=ctrl.selectedItemChangeMunicipio(item)>
-
-								<div layout="row" class="item" layout-align="start center">					
-									<span md-highlight-text="ctrl.searchText" name="municipio">{{item.nombre}}</span>  
-								</div>								
-							</md-autocomplete>
-						</md-content>				
-					<md-content layout="row" layout-xs="column" layout-align="center center"  layout-fill>
+							<md-button ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary" ng-disabled="processForm.$invalid">Consultar</md-button>
+							
 							<md-input-container flex-gt-xs layout-fill flex="20">
-								<label>Fecha de los hechos</label>
-								<md-datepicker ng-model="process.fecha_de_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+									<label>Fecha de denuncia</label>
+									<md-datepicker ng-model="process.fecha_de_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
 							</md-input-container>
-							<md-tooltip md-direction="top">
-								Digitar con tildes
-							</md-tooltip>
-							<md-autocomplete class="md-padding" flex="18" required 					
-								md-input-name="categoria"
-								md-selected-item="ctrl.selectedItem"
-								md-search-text="ctrl.searchText"
-								md-items="item in ctrl.categoria(ctrl.searchText)"
-								md-item-text="item.nombre"
-								md-require-match
-								md-delay="300"					
-								md-floating-label="Categoria"
-								ng-model="process.categoria"
-								ng-value="ctrl.item._id"
-								md-min-length="0"
-								md-selected-item-change=ctrl.selectedItemChangeCategoria(item)>
 
-								<div layout="row" class="item" layout-align="start center">					
-									<span md-highlight-text="ctrl.searchText" name="categoria">{{item.nombre}}</span>  
-								</div>								
-							</md-autocomplete>							
-						</md-content>					
+						</md-content>	
+						<h3>Lugar de los hechos</h3>							
+							<md-content layout="row" layout-xs="column" flex="70"  layout-align="letf center"  layout-fill>							
 
-						<md-content layout="row" layout-xs="column" layout-align="center center"  layout-fill>
-							 <md-input-container flex="60" class="md-block">
-								<label>Breve Resumen de los Hechos</label>
-							<textarea ng-model="process.hechos" md-maxlength="400" rows="5" md-select-on-focus></textarea>
-							</md-input-container>
-						</md-content>					
-						<md-button ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary" ng-disabled="processForm.$invalid">Guardar Noticia</md-button>	
-			
-				</form>
+								<md-tooltip md-direction="top">
+									Digitar con tildes
+								</md-tooltip>
+								<md-autocomplete  flex="18" required 					
+									md-input-name="Pais"
+									md-selected-item="ctrl.selectedItem"
+									md-search-text="ctrl.searchText"
+									md-items="item in ctrl.pais(ctrl.searchText)"
+									md-item-text="item.nombre"
+									md-require-match
+									md-delay="300"					
+									md-floating-label="Pais"
+									ng-model="process.pais"
+									ng-value="ctrl.item._id"
+									md-min-length="0"
+									md-selected-item-change=ctrl.selectedItemChangeCargo(item)>
+
+									<div layout="row" class="item" layout-align="start center">					
+										<span md-highlight-text="ctrl.searchText" name="pais">{{item.nombre}}</span>  
+									</div>								
+								</md-autocomplete>
+								<md-tooltip md-direction="top">
+									Digitar con tildes
+								</md-tooltip>
+								<md-autocomplete  class="md-padding" flex="18" required 					
+									md-input-name="Departamento"
+									md-selected-item="ctrl.selectedItem"
+									md-search-text="ctrl.searchText"
+									md-items="item in ctrl.departamento(ctrl.searchText)"
+									md-item-text="item.nombre"
+									md-require-match
+									md-delay="300"					
+									md-floating-label="Departamento"
+									ng-model="process.departamento"
+									ng-value="ctrl.item._id"
+									md-min-length="0"
+									md-selected-item-change=ctrl.selectedItemChangeDepartamento(item)>
+
+									<div layout="row" class="item" layout-align="start center">					
+										<span md-highlight-text="ctrl.searchText" name="departamento">{{item.nombre}}</span>  
+									</div>								
+								</md-autocomplete>
+								<md-tooltip md-direction="top">
+									Digitar con tildes
+								</md-tooltip>
+								<md-autocomplete  flex="18" required 					
+									md-input-name="Municipio"
+									md-selected-item="ctrl.selectedItem"
+									md-search-text="ctrl.searchText"
+									md-items="item in ctrl.municipio(ctrl.searchText)"
+									md-item-text="item.nombre"
+									md-require-match
+									md-delay="300"					
+									md-floating-label="Municipio"
+									ng-model="process.municipio"
+									ng-value="ctrl.item._id"
+									md-min-length="0"
+									md-selected-item-change=ctrl.selectedItemChangeMunicipio(item)>
+
+									<div layout="row" class="item" layout-align="start center">					
+										<span md-highlight-text="ctrl.searchText" name="municipio">{{item.nombre}}</span>  
+									</div>								
+								</md-autocomplete>
+							</md-content>				
+						<md-content layout="row" layout-xs="column" layout-align="letf center"  layout-fill>
+								<md-input-container flex-gt-xs layout-fill flex="20">
+									<label>Fecha de los hechos</label>
+									<md-datepicker ng-model="process.fecha_de_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+								</md-input-container>
+								<md-tooltip md-direction="top">
+									Digitar con tildes
+								</md-tooltip>
+								<md-autocomplete class="md-padding" flex="18" required 					
+									md-input-name="categoria"
+									md-selected-item="ctrl.selectedItem"
+									md-search-text="ctrl.searchText"
+									md-items="item in ctrl.categoria(ctrl.searchText)"
+									md-item-text="item.nombre"
+									md-require-match
+									md-delay="300"					
+									md-floating-label="Categoria"
+									ng-model="process.categoria"
+									ng-value="ctrl.item._id"
+									md-min-length="0"
+									md-selected-item-change=ctrl.selectedItemChangeCategoria(item)>
+
+									<div layout="row" class="item" layout-align="start center">					
+										<span md-highlight-text="ctrl.searchText" name="categoria">{{item.nombre}}</span>  
+									</div>								
+								</md-autocomplete>							
+							</md-content>					
+
+							<md-content layout="row" layout-xs="column" layout-align="letf center"  layout-fill>
+								 <md-input-container flex="60" class="md-block">
+									<label>Breve Resumen de los Hechos</label>
+								<textarea ng-model="process.hechos" md-maxlength="400" rows="5" md-select-on-focus></textarea>
+								</md-input-container>
+							</md-content>					
+							<md-button ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary" ng-disabled="processForm.$invalid">Guardar Noticia</md-button>	
+				
+					</form>
+					<div flex></div>
+				</div>
 				</md-tab>
 			<md-tab label="Indiciado">
 
@@ -145,10 +149,35 @@
 				</md-content>
 			</md-tab>
 			<md-tab label="Victima">
-				<md-content class="md-padding">
-					<h1 class="md-display-2">Tab Three</h1>
-					<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+			<div layout="column" ng-cloak class="md-inline-form" layout-fill>
+				<md-content layout-gt-sm="row" layout-padding layout-align="center center" layout-margin >					
+					<div flex>
+						<md-input-container flex>
+							<label>Numero Noticia Criminal</label>
+							<input required type="number" ng-model="process.noticia">
+						</md-input-container>
+						<md-button flex ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary" >Consultar</md-button>
+					</div>					
+					<div flex></div>
+					<div flex></div>									
 				</md-content>
+				<md-content layout-gt-sm="row" layout-padding layout-align="center center" layout-margin >					
+					<div flex>
+						<md-input-container flex>
+							<label>Numero Noticia Criminal</label>
+							<input required type="number" ng-model="process.noticia">
+						</md-input-container>
+						<md-button flex ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary" >Consultar</md-button>
+					</div>					
+					<div flex></div>
+					<div flex>
+						<md-input-container flex-gt-xs layout-fill>
+								<label>Fecha de denuncia</label>
+								<md-datepicker ng-model="process.fecha_de_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+						</md-input-container>
+					</div>									
+				</md-content>
+			</div>
 			</md-tab>
 		</md-tabs>
 	</md-content>
