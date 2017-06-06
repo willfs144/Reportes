@@ -11,7 +11,7 @@ var Dependencia = require("./models/dependencia").dependencia;
 var Oficina = require("./models/oficina").oficina;
 var Estado = require("./models/estado").estado;
 var Cargo = require("./models/cargo").cargo;
-
+var Rusuario = require("./routers/usuario");
 //var router_app = require("./routes_server");
 //var session_middleware = require("./middlewares/session");
 
@@ -74,19 +74,7 @@ app.get("/calendario", function(solicitud, respuesta){
 	respuesta.json(data);
 });
 
-app.post("/login", function(req, res){	
-	
-	User.findOne({username:req.body.username,password:req.body.password},{_id:true},function(err, user){
-		console.log(user);
-		if(user != null){	
-			req.session.user_id =user._id;					
-			res.json({user: user, id:req.session.id});	
-		}else{
-			res.json(null);
-		}
-		
-	});	
-});
+
 
 app.post("/usuario", function(req, res){	
 	
@@ -175,6 +163,7 @@ app.post("/users", function(req, res){
 
 //app.use("/main", router_app);
 var port = process.env.PORT || 2409;
+app.use('/user', Rusuario);
 app.listen(port, function() {  
   console.log('Express server listening on port ' + port);
 });

@@ -9,7 +9,7 @@ $scope.user = {
 		
 		var datos = JSON.stringify($scope.user);
 
-		$http({method:'POST',url:'/login',data:datos})
+		$http({method:'POST',url:'user/login',data:datos})
 			.success(function(data){
 				console.log(data);
 				if(data){
