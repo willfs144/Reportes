@@ -7,7 +7,7 @@ var password_validation = {
 	message:"Las Contraseñas no son iguales"
 }
 //estructura de la tabla
-var user_schema = new Schema({
+var process_schema = new Schema({
 	cui: { type: String, 
 				required: "El nombre es obligatorio", 
 				lowercase: true },	
@@ -15,10 +15,14 @@ var user_schema = new Schema({
 	relato_hechos: { type: String, 
 				required: "El nombre es obligatorio", 
 				lowercase: true },
-	ciudad: [type: Number, ref: "Ciudad"],    
+	ciudad: [{type: Number, ref: "Ciudad"}],    
 	fiscal:{ type: Schema.Types.Mixed, ref: "Perfil"},
 	usuario:{ type: Schema.Types.Mixed, ref: "Perfil"},	
 	etapa: {type: Schema.Types.Mixed, ref: "Etapa"},
 	categoria: {type: Schema.Types.Mixed, ref: "Categoria"},
 	estado: {type: Number, ref: "Estado"}
 });
+
+var noticia = mongoose.model('noticia', process_schema); 
+
+module.exports.noticia = noticia;
