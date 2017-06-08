@@ -5,6 +5,10 @@ var paisSchema = new Schema({
     nombre: String   
 });
 
-var pais = mongoose.model('Pais', paisSchema); 
+var pais = mongoose.model('Nacion', paisSchema); 
 
 module.exports.pais = pais;
+
+
+
+

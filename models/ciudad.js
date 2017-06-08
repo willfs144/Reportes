@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var ciudadSchema = new Schema({  
 	_id: Number,
 	nombre: String,
-	departamento: {type: Schema.Types.ObjectId, ref: "Departamento"}   
+	departamento: {type: Number, ref: "Departamento"}   
 });
 
 var ciudad = mongoose.model('Ciudad', ciudadSchema); 

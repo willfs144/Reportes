@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 //var RedisStore = require("connect-redis")(session);
 var User = require("./models/user").User;
 var Perfil = require("./models/perfil").perfil;
+var Pais = require("./models/pais").pais;
 var Ciudad = require("./models/ciudad").ciudad;
 var Sede = require("./models/sede").sede;
 var Dependencia = require("./models/dependencia").dependencia;
@@ -41,7 +42,7 @@ app.use(session({
 });*/
 //app.use(session_middleware);
 
-//mongoose.Promise = Promise;
+mongoose.Promise = Promise;
 
 app.get("/calendario", function(solicitud, respuesta){
 	data = [
@@ -78,6 +79,13 @@ app.get("/calendario", function(solicitud, respuesta){
 	respuesta.json(data);
 });
 
+
+app.get("/paises", function(req, res){	
+	Pais.find(function(err, doc){
+		console.log("pais: "+doc);	  	
+		res.json(doc);
+	});
+});
 
 
 app.post("/usuario", function(req, res){	

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var departamentoSchema = new Schema({  
     nombre: String,
-    pais: {type: Schema.Types.ObjectId, ref: "Pais"}   
+    pais: {type: Number, ref: "Nacion"}   
 });
 
 var departamento = mongoose.model('Departamento', departamentoSchema); 

@@ -1,5 +1,5 @@
 <div ng-include="'head/dashboard.html'"></div>
-<div   class="md-padding" layout="row" layout-align="center center" ng-controller="addProcessController" ng-cloak>
+<div   class="md-padding" layout="row" layout-align="center center" ng-controller="addProcessController as control" ng-cloak>
 	<md-content flex="85">
 		<md-tabs md-dynamic-height md-border-bottom>
 			<md-tab layout="row" label="Proceso">
@@ -14,7 +14,7 @@
 								<input required type="number" ng-model="process.noticia">
 							</md-input-container> 
 
-							<md-button ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary">Consultar</md-button>
+							<md-button ng-disabled="!process.noticia" ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary">Consultar</md-button>
 							
 							<md-input-container flex-gt-xs layout-fill flex="20">
 									<label>Fecha de denuncia</label>
@@ -25,96 +25,73 @@
 						<h3>Lugar de los hechos</h3>							
 							<md-content layout="row" layout-xs="column" flex="70"  layout-align="letf center"  layout-fill>							
 
-								<md-tooltip md-direction="top">
-									Digitar con tildes
-								</md-tooltip>
-								<md-autocomplete  flex="18" required 					
-									md-input-name="Pais"
-									md-selected-item="ctrl.selectedItem"
-									md-search-text="ctrl.searchText"
-									md-items="item in ctrl.pais(ctrl.searchText)"
-									md-item-text="item.nombre"
-									md-require-match
-									md-delay="300"					
-									md-floating-label="Pais"
-									ng-model="process.pais"
-									ng-value="ctrl.item._id"
-									md-min-length="0"
-									md-selected-item-change=ctrl.selectedItemChangeCargo(item)>
+								<md-input-container flex="20">
+									<label>Pais</label>
+									<md-select   name="pais" id="pais" ng-model="process.pais">
+										<md-option ng-value="pais._id" ng-repeat="pais in paises">{{pais.nombre}}</md-option>			
+									</md-select>
+									<!--<div class="errors" ng-messages="processForm.pais.$error">
+										<div ng-message="required">Required</div>
+									</div>-->
+								</md-input-container>	
 
-									<div layout="row" class="item" layout-align="start center">					
-										<span md-highlight-text="ctrl.searchText" name="pais">{{item.nombre}}</span>  
-									</div>								
-								</md-autocomplete>
 								<md-tooltip md-direction="top">
 									Digitar con tildes
 								</md-tooltip>
-								<md-autocomplete  class="md-padding" flex="18" required 					
+								<md-autocomplete  class="md-padding" flex="18" required 															
 									md-input-name="Departamento"
-									md-selected-item="ctrl.selectedItem"
-									md-search-text="ctrl.searchText"
-									md-items="item in ctrl.departamento(ctrl.searchText)"
+									md-selected-item="control.selectedItemDepartamento"
+									md-search-text="control.searchTextDepartamento"
+									md-items="item in control.buscarDepartamento(control.searchTextDepartamento)"
 									md-item-text="item.nombre"
 									md-require-match
 									md-delay="300"					
 									md-floating-label="Departamento"
 									ng-model="process.departamento"
-									ng-value="ctrl.item._id"
-									md-min-length="0"
-									md-selected-item-change=ctrl.selectedItemChangeDepartamento(item)>
+									ng-value="control.item._id"
+									md-min-length="1"
+									md-selected-item-change=control.selectedItemChangeDepartamento(item)>
 
 									<div layout="row" class="item" layout-align="start center">					
-										<span md-highlight-text="ctrl.searchText" name="departamento">{{item.nombre}}</span>  
+										<span md-highlight-text="control.searchTextDepartamento" name="departamento">{{item.nombre}}</span>  
 									</div>								
 								</md-autocomplete>
 								<md-tooltip md-direction="top">
 									Digitar con tildes
 								</md-tooltip>
-								<md-autocomplete  flex="18" required 					
+								<md-autocomplete  flex="18" required 													
 									md-input-name="Municipio"
-									md-selected-item="ctrl.selectedItem"
-									md-search-text="ctrl.searchText"
-									md-items="item in ctrl.municipio(ctrl.searchText)"
+									md-selected-item="control.selectedItemMunicipio"
+									md-search-text="control.searchTextMunicipio"
+									md-items="item in control.buscarMunicipio(control.searchTextMunicipio)"
 									md-item-text="item.nombre"
 									md-require-match
 									md-delay="300"					
 									md-floating-label="Municipio"
 									ng-model="process.municipio"
-									ng-value="ctrl.item._id"
+									ng-value="control.item._id"
 									md-min-length="0"
-									md-selected-item-change=ctrl.selectedItemChangeMunicipio(item)>
+									md-selected-item-change=control.selectedItemChangeMunicipio(item)>
 
 									<div layout="row" class="item" layout-align="start center">					
-										<span md-highlight-text="ctrl.searchText" name="municipio">{{item.nombre}}</span>  
+										<span md-highlight-text="control.searchTextMunicipio" name="municipio">{{item.nombre}}</span>  
 									</div>								
 								</md-autocomplete>
 							</md-content>				
-						<md-content layout="row" layout-xs="column" layout-align="letf center"  layout-fill>
+						<md-content layout="row" layout-xs="column"  class="md-padding" layout-align="letf center"  layout-fill>
 								<md-input-container flex-gt-xs layout-fill flex="20">
 									<label>Fecha de los hechos</label>
 									<md-datepicker ng-model="process.fecha_de_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
 								</md-input-container>
-								<md-tooltip md-direction="top">
-									Digitar con tildes
-								</md-tooltip>
-								<md-autocomplete class="md-padding" flex="18" required 					
-									md-input-name="categoria"
-									md-selected-item="ctrl.selectedItem"
-									md-search-text="ctrl.searchText"
-									md-items="item in ctrl.categoria(ctrl.searchText)"
-									md-item-text="item.nombre"
-									md-require-match
-									md-delay="300"					
-									md-floating-label="Categoria"
-									ng-model="process.categoria"
-									ng-value="ctrl.item._id"
-									md-min-length="0"
-									md-selected-item-change=ctrl.selectedItemChangeCategoria(item)>
-
-									<div layout="row" class="item" layout-align="start center">					
-										<span md-highlight-text="ctrl.searchText" name="categoria">{{item.nombre}}</span>  
-									</div>								
-								</md-autocomplete>							
+								<md-input-container flex="25">
+									<label>Categoria</label>
+									<md-select  name="categoria" ng-model="process.categoria">
+										<md-option ng-value="categoria._id" ng-repeat="categoria in categorias">{{categoria.nombre}}</md-option>			
+									</md-select>
+									<div class="errors" ng-messages="processForm.categoria.$error">
+										<div ng-message="required">Required</div>
+									</div>
+								</md-input-container>			
 							</md-content>					
 
 							<md-content layout="row" layout-xs="column" layout-align="letf center"  layout-fill>
