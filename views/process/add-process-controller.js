@@ -69,8 +69,8 @@ app.controller("addProcessController", function($scope, $http, $filter){
 
 
 
-  $scope.guardar= function(){ 
-    console.log($scope.user);
+  $scope.guardarProcess= function(){ 
+    console.log($scope.process);
     $http({method:'POST',url:'process/procesos',headers : { 'Content-Type': 'application/json' }, data:$scope.process})
       .success(function(response){
         alert("Recibimos los datos");

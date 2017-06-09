@@ -30,9 +30,9 @@
 									<md-select   name="pais" id="pais" ng-model="process.pais">
 										<md-option ng-value="pais._id" ng-repeat="pais in paises">{{pais.nombre}}</md-option>			
 									</md-select>
-									<!--<div class="errors" ng-messages="processForm.pais.$error">
+									<div class="errors" ng-messages="processForm.pais.$error">
 										<div ng-message="required">Required</div>
-									</div>-->
+									</div>
 								</md-input-container>	
 							</div>
 							<div layout-align="start center" layout="column" flex="20">
@@ -112,12 +112,13 @@
 								</md-input-container>
 							</md-content>	               
 						</div>
-						<md-button ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary" ng-disabled="processForm.$invalid">Guardar Noticia</md-button>	
+						<md-button ng-click="guardarProcess()"  layout-wrap class="md-raised md-primary" >Guardar Noticia</md-button> 
+						<!--	ng-disabled="processForm.$invalid" -->
 					</md-content>						
 				</form>
 			</md-tab>
-			<md-tab label="Indiciado">			
-
+			<md-tab label="Indiciado">	
+				
 			</md-tab>
 			<md-tab label="Victima">
 				
