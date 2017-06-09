@@ -191,3 +191,23 @@ div.padded {
       background: white; }
   .tabsdemoDynamicHeight md-content h1:first-child {
     margin-top: 0; }*/
+
+
+
+.contenedor-tabla{
+
+display: table;
+
+}
+
+.contenedor-fila{
+
+display: table-row;
+
+}
+
+.contenedor-columna{
+
+display: table-cell;
+
+}

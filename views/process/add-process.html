@@ -1,31 +1,31 @@
 <div ng-include="'head/dashboard.html'"></div>
 <div   class="md-padding" layout="row" layout-align="center center" ng-controller="addProcessController as control" ng-cloak>
-	<md-content flex="85">
+	<md-content flex="95">
 		<md-tabs md-dynamic-height md-border-bottom>
 			<md-tab layout="row" label="Proceso">
-			<div layout-align="center center" layout-fill class="remove-float">			
-				<div flex></div>			
-					<form  name="processForm" layout="column" >
-						<h1>Agregar Proceso</h1> 
-						<md-content layout="row" layout-xs="column"  class="md-padding"  layout-align="letf center"  layout-fill> 													 
-
-							<md-input-container flex="25" layout-fill>
-								<label>Numero Noticia Criminal</label>
-								<input required type="number" ng-model="process.noticia">
-							</md-input-container> 
-
-							<md-button ng-disabled="!process.noticia" ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary">Consultar</md-button>
-							
-							<md-input-container flex-gt-xs layout-fill flex="20">
-									<label>Fecha de denuncia</label>
-									<md-datepicker ng-model="process.fecha_de_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
-							</md-input-container>
-
-						</md-content>	
-						<h3>Lugar de los hechos</h3>							
-							<md-content layout="row" layout-xs="column" flex="70"  layout-align="letf center"  layout-fill>							
-
-								<md-input-container flex="20">
+				<form  name="processForm">
+					<md-content flex="100" layout-align="center center" layout="column" layout-fill>			
+						<h2 class="md-display-1">Agregar Proceso</h2> 
+						<div layout="row" layout-align="center center" layout-xs="column"  layout-fill>	            
+							<div layout-align="start center" layout="column" flex="20" layout-fill>
+								<md-input-container layout-fill>
+									<label>Numero Noticia Criminal</label>
+									<input required type="number" ng-model="process.noticia">
+								</md-input-container> 
+							</div>
+							<div layout-align="start center" layout-xs="row" layout="column" flex="10">
+								<md-button ng-disabled="!process.noticia" ng-click="consultaProcess()"  class="md-raised md-primary">Consultar</md-button>
+							</div>						
+							<div layout-align="start end" layout="column"  layout-xs="row" flex="25" class="md-padding" layout-fill>
+								<md-input-container  layout-fill>
+										<label>Fecha de denuncia</label>
+										<md-datepicker ng-model="process.fecha_de_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+								</md-input-container>
+							</div>	                
+						</div>
+					   <div layout="row" layout-align="center center" layout-xs="column"  layout-fill>									
+							<div layout-align="start center" layout="column" flex="15">
+								<md-input-container layout-fill>
 									<label>Pais</label>
 									<md-select   name="pais" id="pais" ng-model="process.pais">
 										<md-option ng-value="pais._id" ng-repeat="pais in paises">{{pais.nombre}}</md-option>			
@@ -34,11 +34,12 @@
 										<div ng-message="required">Required</div>
 									</div>-->
 								</md-input-container>	
-
+							</div>
+							<div layout-align="start center" layout="column" flex="20">
 								<md-tooltip md-direction="top">
 									Digitar con tildes
 								</md-tooltip>
-								<md-autocomplete  class="md-padding" flex="18" required 															
+								<md-autocomplete  required flex="50" 															
 									md-input-name="Departamento"
 									md-selected-item="control.selectedItemDepartamento"
 									md-search-text="control.searchTextDepartamento"
@@ -56,10 +57,12 @@
 										<span md-highlight-text="control.searchTextDepartamento" name="departamento">{{item.nombre}}</span>  
 									</div>								
 								</md-autocomplete>
+							</div>
+							<div layout-align="start end" layout="column" flex="20" >
 								<md-tooltip md-direction="top">
 									Digitar con tildes
 								</md-tooltip>
-								<md-autocomplete  flex="18" required 													
+								<md-autocomplete required layout-fill												
 									md-input-name="Municipio"
 									md-selected-item="control.selectedItemMunicipio"
 									md-search-text="control.searchTextMunicipio"
@@ -77,13 +80,17 @@
 										<span md-highlight-text="control.searchTextMunicipio" name="municipio">{{item.nombre}}</span>  
 									</div>								
 								</md-autocomplete>
-							</md-content>				
-						<md-content layout="row" layout-xs="column"  class="md-padding" layout-align="letf center"  layout-fill>
-								<md-input-container flex-gt-xs layout-fill flex="20">
+							</div>
+						</div>					
+						<div layout="row" layout-align="center center" layout-xs="column"  layout-fill>									
+							<div layout-align="start center" layout="column" flex="30">
+								<md-input-container flex-gt-xs layout-fill>
 									<label>Fecha de los hechos</label>
 									<md-datepicker ng-model="process.fecha_de_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
 								</md-input-container>
-								<md-input-container flex="25">
+							</div>
+							 <div layout-align="start center" layout="column" flex="20">
+								<md-input-container>
 									<label>Categoria</label>
 									<md-select  name="categoria" ng-model="process.categoria">
 										<md-option ng-value="categoria._id" ng-repeat="categoria in categorias">{{categoria.nombre}}</md-option>			
@@ -91,70 +98,29 @@
 									<div class="errors" ng-messages="processForm.categoria.$error">
 										<div ng-message="required">Required</div>
 									</div>
-								</md-input-container>			
-							</md-content>					
-
-							<md-content layout="row" layout-xs="column" layout-align="letf center"  layout-fill>
+								</md-input-container>	
+							 </div>
+							<div layout-align="start center" layout="column" flex="5">
+								
+							</div>
+						</div>
+						<div layout-align="center center" layout="row" layout-fill>
+							<md-content layout="row" layout-xs="column" layout-align="center center"  layout-fill>
 								 <md-input-container flex="60" class="md-block">
 									<label>Breve Resumen de los Hechos</label>
 								<textarea ng-model="process.hechos" md-maxlength="400" rows="5" md-select-on-focus></textarea>
 								</md-input-container>
-							</md-content>					
-							<md-button ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary" ng-disabled="processForm.$invalid">Guardar Noticia</md-button>	
-				
-					</form>
-					<div flex></div>
-				</div>
-				</md-tab>
-			<md-tab label="Indiciado">
+							</md-content>	               
+						</div>
+						<md-button ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary" ng-disabled="processForm.$invalid">Guardar Noticia</md-button>	
+					</md-content>						
+				</form>
+			</md-tab>
+			<md-tab label="Indiciado">			
 
-			 <md-button ng-click="guardar()" layout-wrap class="md-raised md-primary" ng-disabled="processForm.$invalid">Consultar</md-button>   
-				<md-content flex="100" class="md-padding" layout="row" layout-fill>
-				 
-		<md-input-container  >
-					<label>Numero Noticia Criminal</label>
-					<input required type="number" ng-model="process.noticia">
-		</md-input-container>
-					
-
-		
-	 <md-input-container  >
-					<label>Numero Noticia Criminal</label>
-					<input required type="number" ng-model="process.noticia">
-		</md-input-container> 
-				
-				</md-content>
 			</md-tab>
 			<md-tab label="Victima">
-			<div layout="column" ng-cloak class="md-inline-form" layout-fill>
-				<md-content layout-gt-sm="row" layout-padding layout-align="center center" layout-margin >					
-					<div flex>
-						<md-input-container flex>
-							<label>Numero Noticia Criminal</label>
-							<input required type="number" ng-model="process.noticia">
-						</md-input-container>
-						<md-button flex ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary" >Consultar</md-button>
-					</div>					
-					<div flex></div>
-					<div flex></div>									
-				</md-content>
-				<md-content layout-gt-sm="row" layout-padding layout-align="center center" layout-margin >					
-					<div flex>
-						<md-input-container flex>
-							<label>Numero Noticia Criminal</label>
-							<input required type="number" ng-model="process.noticia">
-						</md-input-container>
-						<md-button flex ng-click="consultaProcess()"  layout-wrap class="md-raised md-primary" >Consultar</md-button>
-					</div>					
-					<div flex></div>
-					<div flex>
-						<md-input-container flex-gt-xs layout-fill>
-								<label>Fecha de denuncia</label>
-								<md-datepicker ng-model="process.fecha_de_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
-						</md-input-container>
-					</div>									
-				</md-content>
-			</div>
+				
 			</md-tab>
 		</md-tabs>
 	</md-content>

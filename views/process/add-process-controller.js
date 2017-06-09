@@ -3,10 +3,11 @@ app.controller("addProcessController", function($scope, $http, $filter){
 
   $scope.process = {
     noticia:"",
-    fecha_de_denuncia:"",    
-    municipio:"",    
+    fecha_de_denuncia:"",      
     fecha_de_hechos: "",
-    hechos:""
+    hechos:"", 
+    departamento:"",
+    pais:"hola"
   }
 
 
@@ -21,7 +22,7 @@ app.controller("addProcessController", function($scope, $http, $filter){
 
     }
 
- $http({method:'GET', url:'/paises'})
+ $http({method:'GET', url:'process/paises'})
     .success(function(response){        
       console.log(response);
      $scope.paises = response;      
@@ -34,10 +35,9 @@ app.controller("addProcessController", function($scope, $http, $filter){
       
   });
 
-  this.buscarDepartamento = function(buscar){
-    console.log("pasoDepartamento");
-    return $http({method:'GET', url:'/process/departamentos',params: {q:buscar, r:1}})
-      .then(function(response){
+  this.buscarDepartamento = function(buscar){   
+    return $http({method:'GET', url:'/process/departamentos',params: {q:buscar, r: $scope.process.pais}})//capturar el uno
+      .then(function(response){       
         return response.data;     
       });
   }
@@ -50,8 +50,8 @@ app.controller("addProcessController", function($scope, $http, $filter){
     }
   }
 
-  this.buscarMunicipio = function(buscar){
-    return $http({method:'GET', url:'process/municipios',params: {q:buscar, r:25}})
+  this.buscarMunicipio = function(buscar){    
+    return $http({method:'GET', url:'process/municipios',params: {q:buscar, r:$scope.process.departamento}})
       .then(function(response){
         return response.data;     
       });
