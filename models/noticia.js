@@ -12,8 +12,8 @@ var process_schema = new Schema({
 				required: "los hechos son obligatorios", 
 				lowercase: true },
 	ciudad: {type: Number, ref: "Ciudad"},    
-	fiscal:{ type: Schema.Types.Mixed, ref: "Perfil"},
-	usuario:{ type: Schema.Types.Mixed, ref: "Perfil"},	
+	fiscal:{ type: Schema.Types.Mixed, ref: "User"},
+	usuario:{ type: Schema.Types.Mixed, ref: "User"},	
 	etapa: {type: Schema.Types.Mixed, ref: "Etapa"},
 	categoria: {type: Schema.Types.Mixed, ref: "Categoria"},
 	estado: {type: Number, ref: "Estado"}
