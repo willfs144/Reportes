@@ -10,16 +10,16 @@
 							<div layout-align="start center" layout="column" flex="20" layout-fill>
 								<md-input-container layout-fill>
 									<label>Numero Noticia Criminal</label>
-									<input required type="number" ng-model="process.noticia">
+									<input required type="number" ng-model="process.cui">
 								</md-input-container> 
 							</div>
 							<div layout-align="start center" layout-xs="row" layout="column" flex="10">
-								<md-button ng-disabled="!process.noticia" ng-click="consultaProcess()"  class="md-raised md-primary">Consultar</md-button>
+								<md-button ng-disabled="!process.cui" ng-click="consultaProcess()"  class="md-raised md-primary">Consultar</md-button>
 							</div>						
 							<div layout-align="start end" layout="column"  layout-xs="row" flex="25" class="md-padding" layout-fill>
 								<md-input-container  layout-fill>
 										<label>Fecha de denuncia</label>
-										<md-datepicker ng-model="process.fecha_de_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+										<md-datepicker ng-model="process.fecha_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
 								</md-input-container>
 							</div>	                
 						</div>
@@ -27,7 +27,7 @@
 							<div layout-align="start center" layout="column" flex="15">
 								<md-input-container layout-fill>
 									<label>Pais</label>
-									<md-select   name="pais" id="pais" ng-model="process.pais">
+									<md-select   name="pais" id="pais" ng-model="proces.pais">
 										<md-option ng-value="pais._id" ng-repeat="pais in paises">{{pais.nombre}}</md-option>			
 									</md-select>
 									<div class="errors" ng-messages="processForm.pais.$error">
@@ -48,7 +48,7 @@
 									md-require-match
 									md-delay="300"					
 									md-floating-label="Departamento"
-									ng-model="process.departamento"
+									ng-model="proces.departamento"
 									ng-value="control.item._id"
 									md-min-length="1"
 									md-selected-item-change=control.selectedItemChangeDepartamento(item)>
@@ -71,7 +71,7 @@
 									md-require-match
 									md-delay="300"					
 									md-floating-label="Municipio"
-									ng-model="process.municipio"
+									ng-model="process.ciudad"
 									ng-value="control.item._id"
 									md-min-length="0"
 									md-selected-item-change=control.selectedItemChangeMunicipio(item)>
@@ -86,7 +86,7 @@
 							<div layout-align="start center" layout="column" flex="30">
 								<md-input-container flex-gt-xs layout-fill>
 									<label>Fecha de los hechos</label>
-									<md-datepicker ng-model="process.fecha_de_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+									<md-datepicker ng-model="process.fecha_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
 								</md-input-container>
 							</div>
 							 <div layout-align="start center" layout="column" flex="20">
@@ -108,7 +108,7 @@
 							<md-content layout="row" layout-xs="column" layout-align="center center"  layout-fill>
 								 <md-input-container flex="60" class="md-block">
 									<label>Breve Resumen de los Hechos</label>
-								<textarea ng-model="process.hechos" md-maxlength="400" rows="5" md-select-on-focus></textarea>
+								<textarea ng-model="process.relato_hechos" md-maxlength="400" rows="5" md-select-on-focus></textarea>
 								</md-input-container>
 							</md-content>	               
 						</div>
@@ -117,7 +117,89 @@
 					</md-content>						
 				</form>
 			</md-tab>
-			<md-tab label="Indiciado">	
+			<md-tab label="Indiciado" >	
+
+			<div layout-align="center center">
+				<h2 class="md-display-1">Agregar Proceso</h2> 	
+				<md-content layout-padding>
+					<div>
+					  <form name="userForm">
+
+						<div layout-gt-xs="row">
+							<md-input-container layout-fill>
+								<label>Numero Noticia Criminal</label>
+								<input required type="number" ng-model="process.cui">
+							</md-input-container>
+
+							<div layout-align="start center" layout-xs="row" layout-fill>
+								<md-button ng-disabled="!process.cui" ng-click="consultaProcess()"  class="md-raised md-primary">Consultar</md-button>
+							</div>
+
+							
+						</div>
+
+						<div layout-gt-sm="row">
+							 <md-input-container  layout-fill>
+								<label>Fecha de denuncia</label>
+								<md-datepicker ng-model="process.fecha_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+							</md-input-container>	
+
+						 <md-input-container  layout-fill>
+								<label>Fecha de denuncia</label>
+								<md-datepicker ng-model="process.fecha_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+						</md-input-container>
+						</div>
+
+						<md-input-container class="md-block">
+						  <label>Address</label>
+						  <input ng-model="user.address">
+						</md-input-container>
+
+						<md-input-container md-no-float class="md-block">
+						  <input ng-model="user.address2" placeholder="Address 2">
+						</md-input-container>
+
+						<div layout-gt-sm="row">
+						  <md-input-container class="md-block" flex-gt-sm>
+							<label>City</label>
+							<input ng-model="user.city">
+						  </md-input-container>
+
+						  <md-input-container class="md-block" flex-gt-sm>
+							<label>State</label>
+							<md-select ng-model="user.state">
+							  <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+								{{state.abbrev}}
+							  </md-option>
+							</md-select>
+						  </md-input-container>
+
+						  <md-input-container class="md-block" flex-gt-sm>
+							<label>Postal Code</label>
+							<input name="postalCode" ng-model="user.postalCode" placeholder="12345"
+								   required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+
+							<div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+							  <div ng-message="required" class="my-message">You must supply a postal code.</div>
+							  <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
+								code.
+							  </div>
+							  <div ng-message="md-maxlength" class="my-message">
+								Don't use the long version silly...we don't need to be that specific...
+							  </div>
+							</div>
+						  </md-input-container>
+						</div>
+
+						<md-input-container class="md-block">
+						  <label>Biography</label>
+						  <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+						</md-input-container>
+
+					  </form>
+					</div>
+					</md-content>
+				</div>	
 				
 			</md-tab>
 			<md-tab label="Victima">

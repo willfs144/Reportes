@@ -6,6 +6,7 @@ var Departamento = require("../models/departamento").departamento;
 var Ciudad = require("../models/ciudad").ciudad;
 var Categoria = require("../models/categoria").categoria;
 
+
 router.get("/procesos", function(req, res){	
 	
 	var id=req.query.idprocess;	
@@ -60,9 +61,10 @@ router.get("/categorias", function(req, res){
 	});
 });
 
-router.post("/procesos", function(req, res){		  
-	var proceso =  new Noticia(req.body);
-	 Noticia.save().then(function(){
+router.post("/procesos", function(req, res){
+		  
+	var noticia =  new Noticia(req.body);
+	noticia.save().then(function(){
 	 	res.end();
 	}, function(err){
 		if(err){

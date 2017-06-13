@@ -2,12 +2,10 @@
 app.controller("addProcessController", function($scope, $http, $filter){
 
   $scope.process = {
-    noticia:"",
-    fecha_de_denuncia:"",      
-    fecha_de_hechos: "",
-    hechos:"", 
-    departamento:"",
-    pais:"hola"
+    cui:"",
+    fecha_denuncia:"",      
+    fecha_hechos: "",
+    relato_hechos:""    
   }
 
 
@@ -36,7 +34,7 @@ app.controller("addProcessController", function($scope, $http, $filter){
   });
 
   this.buscarDepartamento = function(buscar){   
-    return $http({method:'GET', url:'/process/departamentos',params: {q:buscar, r: $scope.process.pais}})//capturar el uno
+    return $http({method:'GET', url:'/process/departamentos',params: {q:buscar, r: $scope.proces.pais}})//capturar el uno
       .then(function(response){       
         return response.data;     
       });
@@ -44,14 +42,14 @@ app.controller("addProcessController", function($scope, $http, $filter){
 
   this.selectedItemChangeDepartamento = function(item){
     try{
-      $scope.process.departamento = item._id;
+      $scope.proces.departamento = item._id;
     }catch(e){        
       alert("Campo vacio",e);
     }
   }
 
   this.buscarMunicipio = function(buscar){    
-    return $http({method:'GET', url:'process/municipios',params: {q:buscar, r:$scope.process.departamento}})
+    return $http({method:'GET', url:'process/municipios',params: {q:buscar, r:$scope.proces.departamento}})
       .then(function(response){
         return response.data;     
       });
@@ -59,7 +57,7 @@ app.controller("addProcessController", function($scope, $http, $filter){
 
   this.selectedItemChangeMunicipio = function(item){
     try{
-      $scope.process.municipio = item._id;
+      $scope.process.ciudad = item._id;
     }catch(e){        
       alert("Campo vacio",e);
     }
@@ -71,6 +69,7 @@ app.controller("addProcessController", function($scope, $http, $filter){
 
   $scope.guardarProcess= function(){ 
     console.log($scope.process);
+
     $http({method:'POST',url:'process/procesos',headers : { 'Content-Type': 'application/json' }, data:$scope.process})
       .success(function(response){
         alert("Recibimos los datos");
