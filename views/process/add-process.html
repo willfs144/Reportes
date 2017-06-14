@@ -2,8 +2,113 @@
 <div   class="md-padding" layout="row" layout-align="center center" ng-controller="addProcessController as control" ng-cloak>
 	<md-content flex="95">
 		<md-tabs md-dynamic-height md-border-bottom>
-			<md-tab layout="row" label="Proceso">
-				<form  name="processForm">
+			<md-tab label="Proceso">			
+				<h2 class="md-display-1">Agregar Proceso</h2> 	
+				<md-content layout-padding>	
+					<div>
+						<form name="processForm">
+							<div layout-gt-xs="row">
+								<md-input-container class="Box-form">
+									<label>Numero Noticia Criminal</label>
+									<input required type="number" ng-model="process.cui">
+								</md-input-container>
+
+								<div>
+									<md-button ng-disabled="!process.cui" ng-click="consultaProcess()"  class="md-raised md-primary">Consultar</md-button>
+								</div>
+								
+								<md-input-container  class="Box-form">
+									<label>Fecha de denuncia</label>
+									<md-datepicker ng-model="process.fecha_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+								</md-input-container>	
+								
+							</div>						
+
+							<div layout-gt-sm="row">
+							  <md-input-container class="Box-form md-block">
+									<label>Pais</label>
+									<md-select   name="pais" id="pais" ng-model="proces.pais">
+										<md-option ng-value="pais._id" ng-repeat="pais in paises">{{pais.nombre}}</md-option>			
+									</md-select>
+									<div class="errors" ng-messages="processForm.pais.$error">
+										<div ng-message="required">Required</div>
+									</div>
+								</md-input-container>	
+
+								<md-tooltip md-direction="top">
+										Digitar con tildes
+								</md-tooltip>
+								<md-autocomplete  class="Box-form md-block" required 														
+									md-input-name="Departamento"
+									md-selected-item="control.selectedItemDepartamento"
+									md-search-text="control.searchTextDepartamento"
+									md-items="item in control.buscarDepartamento(control.searchTextDepartamento)"
+									md-item-text="item.nombre"
+									md-require-match
+									md-delay="300"					
+									md-floating-label="Departamento"
+									ng-model="proces.departamento"
+									ng-value="control.item._id"
+									md-min-length="1"
+									md-selected-item-change=control.selectedItemChangeDepartamento(item)>
+
+									<div layout="row" class="item" layout-align="start center">					
+										<span md-highlight-text="control.searchTextDepartamento" name="departamento">{{item.nombre}}</span>  
+									</div>								
+								</md-autocomplete>
+
+								<md-tooltip md-direction="top">
+										Digitar con tildes
+								</md-tooltip>
+								<md-autocomplete class="Box-form md-block" required 												
+									md-input-name="Municipio"
+									md-selected-item="control.selectedItemMunicipio"
+									md-search-text="control.searchTextMunicipio"
+									md-items="item in control.buscarMunicipio(control.searchTextMunicipio)"
+									md-item-text="item.nombre"
+									md-require-match
+									md-delay="300"					
+									md-floating-label="Municipio"
+									ng-model="process.ciudad"
+									ng-value="control.item._id"
+									md-min-length="0"
+									md-selected-item-change=control.selectedItemChangeMunicipio(item)>
+
+									<div layout="row" class="item" layout-align="start center">					
+										<span md-highlight-text="control.searchTextMunicipio" name="municipio">{{item.nombre}}</span>  
+									</div>								
+								</md-autocomplete>					 
+							</div>
+
+							<div layout-gt-sm="row">
+								<md-input-container class="Box-form">
+										<label>Fecha de los hechos</label>
+										<md-datepicker ng-model="process.fecha_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+									</md-input-container>
+
+								<md-input-container class="Box-form">
+									<label>Categoria</label>
+									<md-select  name="categoria" ng-model="process.categoria">
+										<md-option ng-value="categoria._id" ng-repeat="categoria in categorias">{{categoria.nombre}}</md-option>			
+									</md-select>
+									<div class="errors" ng-messages="processForm.categoria.$error">
+										<div ng-message="required">Required</div>
+									</div>
+								</md-input-container>	
+							</div>
+							<md-input-container class=" md-block">
+							  <label>Breve Resumen de los Hechos</label>
+							  <textarea ng-model="process.relato_hechos" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+							</md-input-container>
+							
+							<md-button ng-click="guardarProcess()"  layout-wrap class="md-raised md-primary" >Guardar Noticia</md-button> 
+							<!--	ng-disabled="processForm.$invalid" -->
+						</form>				
+					</div>					
+				</md-content>		
+			</md-tab>
+			<md-tab label="Indiciado" >	
+			<form  name="processForm">
 					<md-content flex="100" layout-align="center center" layout="column" layout-fill>			
 						<h2 class="md-display-1">Agregar Proceso</h2> 
 						<div layout="row" layout-align="center center" layout-xs="column"  layout-fill>	            
@@ -18,8 +123,8 @@
 							</div>						
 							<div layout-align="start end" layout="column"  layout-xs="row" flex="25" class="md-padding" layout-fill>
 								<md-input-container  layout-fill>
-										<label>Fecha de denuncia</label>
-										<md-datepicker ng-model="process.fecha_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+									<label>Fecha de denuncia</label>
+									<md-datepicker ng-model="process.fecha_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
 								</md-input-container>
 							</div>	                
 						</div>
@@ -116,89 +221,8 @@
 						<!--	ng-disabled="processForm.$invalid" -->
 					</md-content>						
 				</form>
-			</md-tab>
-			<md-tab label="Indiciado" >	
 
-			<div layout-align="center center">
-				<h2 class="md-display-1">Agregar Proceso</h2> 	
-				<md-content layout-padding>
-					<div>
-					  <form name="userForm">
-
-						<div layout-gt-xs="row">
-							<md-input-container layout-fill>
-								<label>Numero Noticia Criminal</label>
-								<input required type="number" ng-model="process.cui">
-							</md-input-container>
-
-							<div layout-align="start center" layout-xs="row" layout-fill>
-								<md-button ng-disabled="!process.cui" ng-click="consultaProcess()"  class="md-raised md-primary">Consultar</md-button>
-							</div>
-							
-						</div>
-
-						<div layout-gt-sm="row">
-							 <md-input-container  layout-fill>
-								<label>Fecha de denuncia</label>
-								<md-datepicker ng-model="process.fecha_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
-							</md-input-container>	
-
-						 <md-input-container  layout-fill>
-								<label>Fecha de denuncia</label>
-								<md-datepicker ng-model="process.fecha_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
-						</md-input-container>
-						</div>
-
-						<md-input-container class="md-block">
-						  <label>Address</label>
-						  <input ng-model="user.address">
-						</md-input-container>
-
-						<md-input-container md-no-float class="md-block">
-						  <input ng-model="user.address2" placeholder="Address 2">
-						</md-input-container>
-
-						<div layout-gt-sm="row">
-						  <md-input-container class="md-block" flex-gt-sm>
-							<label>City</label>
-							<input ng-model="user.city">
-						  </md-input-container>
-
-						  <md-input-container class="md-block" flex-gt-sm>
-							<label>State</label>
-							<md-select ng-model="user.state">
-							  <md-option ng-repeat="state in states" value="{{state.abbrev}}">
-								{{state.abbrev}}
-							  </md-option>
-							</md-select>
-						  </md-input-container>
-
-						  <md-input-container class="md-block" flex-gt-sm>
-							<label>Postal Code</label>
-							<input name="postalCode" ng-model="user.postalCode" placeholder="12345"
-								   required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
-
-							<div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-							  <div ng-message="required" class="my-message">You must supply a postal code.</div>
-							  <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
-								code.
-							  </div>
-							  <div ng-message="md-maxlength" class="my-message">
-								Don't use the long version silly...we don't need to be that specific...
-							  </div>
-							</div>
-						  </md-input-container>
-						</div>
-
-						<md-input-container class="md-block">
-						  <label>Biography</label>
-						  <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-						</md-input-container>
-
-					  </form>
-					</div>
-					</md-content>
-				</div>	
+				
 				
 			</md-tab>
 			<md-tab label="Victima">
