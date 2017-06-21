@@ -9,10 +9,8 @@ var Categoria = require("../models/categoria").categoria;
 
 router.get("/procesos", function(req, res){	
 	
-	var id=req.query.idprocess;	
-	Noticia.findById(id, function(err, proces){
-		//res.json(proces);
-		console.log(proces);
+	Noticia.find({cui:req.query.idNoticia}, function(err, proces){
+		res.json(proces);		
 	});
 });
 

@@ -33,6 +33,38 @@ app.config(['$routeProvider',
 			});
 	}]);
 
+
+
+
+app.run(function($rootScope, $location, sessionService){
+	var routespermission= ['/dashboard','/addprocess','/calendar'];
+	$rootScope.$on('$routeChangeStart', function(){
+		if(routespermission.indexOf($location.path()) !=-1 && !sessionService.isLogged()){
+			$location.path("/");
+		}
+	});
+
+});
+
+
+app.config(function($mdDateLocaleProvider) {
+  // Example of a Spanish localization.
+  $mdDateLocaleProvider.months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
+                                  'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+  $mdDateLocaleProvider.shortMonths = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 
+                                  'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+  $mdDateLocaleProvider.days = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'];
+  $mdDateLocaleProvider.shortDays = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'];
+  // Can change week display to start on Monday.
+  $mdDateLocaleProvider.firstDayOfWeek = 1;
+ 
+  $mdDateLocaleProvider.weekNumberFormatter = function(weekNumber) {
+    return 'Semana ' + weekNumber;
+  };
+  $mdDateLocaleProvider.msgCalendar = 'Calendario';
+  $mdDateLocaleProvider.msgOpenCalendar = 'Abrir calendario';
+});
+
 app.config(function($mdThemingProvider) {
    $mdThemingProvider
     .theme('default')  
@@ -44,13 +76,3 @@ app.config(function($mdThemingProvider) {
     .warnPalette('red')
     .backgroundPalette('grey');
   });
-
-app.run(function($rootScope, $location, sessionService){
-	var routespermission= ['/dashboard','/addprocess','/calendar'];
-	$rootScope.$on('$routeChangeStart', function(){
-		if(routespermission.indexOf($location.path()) !=-1 && !sessionService.isLogged()){
-			$location.path("/");
-		}
-	});
-
-});

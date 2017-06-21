@@ -48,6 +48,7 @@ $scope.user = {
 
 
 
+
 app.controller("signupController", function($scope, $http, $filter){
 
 	$scope.user = {

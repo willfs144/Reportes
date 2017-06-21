@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+                             var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 //estructura de la tabla
@@ -11,12 +11,13 @@ var process_schema = new Schema({
 	relato_hechos: { type: String, 
 				required: "los hechos son obligatorios", 
 				lowercase: true },
-	ciudad: {type: Number, ref: "Ciudad"},    
+	lugar_hechos: [{type: Number, ref: "Ciudad"}],    
 	fiscal:{ type: Schema.Types.Mixed, ref: "User"},
 	usuario:{ type: Schema.Types.Mixed, ref: "User"},	
 	etapa: {type: Schema.Types.Mixed, ref: "Etapa"},
 	categoria: {type: Schema.Types.Mixed, ref: "Categoria"},
-	estado: {type: Number, ref: "Estado"}
+	estado: {type: Number, ref: "Estado"},
+	ubicacion: {type:  Schema.Types.Mixed, ref: "Oficina"}
 });
 
 var noticia = mongoose.model('noticia', process_schema); 

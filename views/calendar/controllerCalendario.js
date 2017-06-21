@@ -1,10 +1,12 @@
 //var app = angular.module('myApp', ['ui.calendar', 'ui.bootstrap']); // added u.bootstrap for modal dialog
-app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', '$uibModal', function ($scope, $http, uiCalendarConfig, $uibModal) {
+app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarConfig', '$uibModal', function ($scope, $mdDialog,$http, uiCalendarConfig, $uibModal) {
     
     $scope.SelectedEvent = null;
     var isFirstTime = true;   
 
- 
+      $scope.status = '  ';
+      $scope.customFullscreen = false;
+
     $scope.events = [];
     $scope.eventSources = [$scope.events];
 
@@ -83,7 +85,8 @@ app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', '$uibMo
                     Title: '', 
                     Description: ''
                 }
-                $scope.ShowModal();
+                //$scope.ShowModal();
+                 $scope.showAdvanced();
             }, 
             eventClick: function (event) {
                 $scope.SelectedEvent = event;
@@ -96,8 +99,8 @@ app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', '$uibMo
                     IsFullDay: false, 
                     Title: event.title, 
                     Description: event.description
-                }
-                $scope.ShowModal();*/
+                }*/
+                //$scope.ShowModal();
             },              
             eventAfterAllRender: function () {
                 if ($scope.events.length > 0 && isFirstTime) {
@@ -128,12 +131,31 @@ app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', '$uibMo
     };
     $scope.changeLang();
 
+
+    $scope.showAdvanced = function() {
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'calendar/modal-dialog-alert.html',
+      parent: angular.element(document.body),      
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+  };
+
+
     //this function for show modal dialog
-    $scope.ShowModal = function(){
+    /*$scope.ShowModal = function(){
         $scope.option = {
-            templateUrl: 'modalContent.html', 
+            templateUrl: 'calendar/modal-dialog-alert.html', 
             controller: 'modalController', 
+            parent: angular.element(document.body),
             backdrop: 'static', 
+            clickOutsideToClose:true,
             resolve: {
                 NewEvent: function(){
                     return $scope.NewEvent;
@@ -174,7 +196,7 @@ app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', '$uibMo
         }, function(){
             console.log('Modal dialog closed')
         })
-    }
+    }*/
 
     
  
@@ -182,7 +204,7 @@ app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', '$uibMo
 
 // create a new controller for modal 
 
-app.controller('modalController', ['$scope', '$uibModalInstance', 'NewEvent',function($scope, $uibModalInstance, NewEvent){
+app.controller('modalController', ['$scope','$mdDialog','$uibModalInstance', 'NewEvent',function($scope, $mdDialog, $uibModalInstance, NewEvent){
     $scope.NewEvent = NewEvent;
     $scope.Message = "";
     $scope.ok = function(){
@@ -199,4 +221,19 @@ app.controller('modalController', ['$scope', '$uibModalInstance', 'NewEvent',fun
          $uibModalInstance.dismiss('cancel');
     }
 
-}])
+}]);
+
+
+function DialogController($scope, $mdDialog) {
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+  }

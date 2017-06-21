@@ -9,11 +9,9 @@ app.controller("addProcessController", function($scope, $http, $filter){
   }
 
 
-  	$scope.consultaProcess = function(){      
-      var idNoticia = $scope.process.noticia;
-      console.log(idNoticia);
-      $scope.process.noticia;
-      $http({method:'GET', url:'/process/procesos',params: {idNoticia:idNoticia}})
+  	$scope.consultaProcess = function(){       
+      alert(""+$scope.process.cui);
+      $http({method:'GET', url:'/process/procesos',params: {idNoticia:$scope.process.cui}})
         .then(function(process){ 
         console.log(process.data); 
       });     
@@ -57,7 +55,7 @@ app.controller("addProcessController", function($scope, $http, $filter){
 
   this.selectedItemChangeMunicipio = function(item){
     try{
-      $scope.process.ciudad = item._id;
+      $scope.process.lugar_hechos = item._id;
     }catch(e){        
       alert("Campo vacio",e);
     }

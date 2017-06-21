@@ -87,7 +87,7 @@ background-color: #eee;
 	color: blue;
 }
 .blue-text{
-	color: blue !important;
+	color: #0785D7 !important;
 }
  
 .hint {
@@ -118,6 +118,13 @@ div.padded {
     margin: 10px;
     height: 550px;
     width: 340px; 
+}
+
+div.marco { 
+	padding: 20px;  
+    margin: 15px;
+    height: 70%;
+    width: 75%; 
 }
 
 .md-datepicker-input-container { 
@@ -194,20 +201,5 @@ div.padded {
 
 
 
-.contenedor-tabla{
-
-display: table;
-
-}
-
-.contenedor-fila{
-
-display: table-row;
-
-}
-
-.contenedor-columna{
-
-display: table-cell;
-
-}
+.dialogdemoBasicUsage #popupContainer {
+  position: relative; }
