@@ -1,9 +1,10 @@
 'use strict';
 app.controller("addProcessController", function($scope, $http, $filter){
 
+
   $scope.process = {
     cui:"",
-    fecha_denuncia:"",      
+    fecha_denuncia: new Date(),      
     fecha_hechos: "",
     relato_hechos:""    
   }
@@ -12,24 +13,32 @@ app.controller("addProcessController", function($scope, $http, $filter){
   	$scope.consultaProcess = function(){       
       alert(""+$scope.process.cui);
       $http({method:'GET', url:'/process/procesos',params: {idNoticia:$scope.process.cui}})
-        .then(function(process){ 
-        console.log(process.data); 
+        .then(function(process){         
       });     
 
     }
 
  $http({method:'GET', url:'process/paises'})
-    .success(function(response){        
-      console.log(response);
+    .success(function(response){      
      $scope.paises = response;      
   });
 
-  $http({method:'GET', url:'process/categorias'})
-    .success(function(response){        
-      console.log(response);
-      $scope.categorias = response;  
-      
-  });
+ 
+  this.buscarCategoria= function(buscar){    
+    return $http({method:'GET', url:'process/categorias',params: {q:buscar}})
+      .then(function(response){
+        return response.data;     
+      });
+  }
+
+  this.selectedItemChangeCategoria= function(item){
+    try{
+      $scope.process.categoria = item._id;
+    }catch(e){        
+      alert("Campo vacio",e);
+    }
+  }
+
 
   this.buscarDepartamento = function(buscar){   
     return $http({method:'GET', url:'/process/departamentos',params: {q:buscar, r: $scope.proces.pais}})//capturar el uno
@@ -61,10 +70,6 @@ app.controller("addProcessController", function($scope, $http, $filter){
     }
   }
 
-
-
-
-
   $scope.guardarProcess= function(){ 
     console.log($scope.process);
 
@@ -77,7 +82,6 @@ app.controller("addProcessController", function($scope, $http, $filter){
       console.log(data);
     });
   }
-
 
 
   });

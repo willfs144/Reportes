@@ -90,7 +90,7 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
             }, 
             eventClick: function (event) {
                 $scope.SelectedEvent = event;
-                /*var fromDate = moment(event.start).format('YYYY/MM/DD LT');
+                var fromDate = moment(event.start).format('YYYY/MM/DD LT');
                 var endDate = moment(event.end).format('YYYY/MM/DD LT');
                 $scope.NewEvent = {
                     EventID: event.id,
@@ -99,7 +99,7 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
                     IsFullDay: false, 
                     Title: event.title, 
                     Description: event.description
-                }*/
+                }
                 //$scope.ShowModal();
             },              
             eventAfterAllRender: function () {
@@ -138,7 +138,10 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
       templateUrl: 'calendar/modal-dialog-alert.html',
       parent: angular.element(document.body),      
       clickOutsideToClose:true,
-      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+      fullscreen: $scope.customFullscreen, // Only for -xs, -sm breakpoints.
+      locals: {
+       NewEvent: $scope.NewEvent
+     }
     })
     .then(function(answer) {
       $scope.status = 'You said the information was "' + answer + '".';
@@ -198,6 +201,7 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
         })
     }*/
 
+
     
  
 }]);
@@ -224,7 +228,9 @@ app.controller('modalController', ['$scope','$mdDialog','$uibModalInstance', 'Ne
 }]);
 
 
-function DialogController($scope, $mdDialog) {
+function DialogController($scope, $mdDialog, NewEvent) {
+    $scope.NewEvent = NewEvent;
+    $scope.Message = "";
     $scope.hide = function() {
       $mdDialog.hide();
     };
@@ -237,3 +243,6 @@ function DialogController($scope, $mdDialog) {
       $mdDialog.hide(answer);
     };
   }
+
+
+

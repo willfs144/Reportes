@@ -12,30 +12,47 @@
 									<div layout-gt-sm="row">
 										<md-input-container class="Box-form" >
 											<label>Número Noticia Criminal.</label>
-											<input type="text" md-maxlength="21" required name="cui" ng-model="process.cui">
+											<input ng-pattern="/^[0-9]{21}$/" md-maxlength="21"  minlength="21" required name="cui" ng-model="process.cui">
 
-											<div class="hint" ng-if="!showHints">Número del proceso.</div>
+											<div class="hint" ng-if="!showHints">Ingrese número del proceso.</div>
 
-											<div ng-messages="cui.$error" ng-if="!showHints">
-												<div ng-message="required">CUI es Requerido.</div>                 
+											<div ng-messages="processForm.cui.$error" ng-if="!showHints">												 
+												<div ng-message="required">Número del proceso es requerido.</div>												
+												<div ng-message="minlength">Minimo 21 dígitos.</div>												
+												<div ng-message="md-maxlength">Maximo 21 dígitos.</div>  
+												<div ng-message="pattern">Ingrese solo dígitos númericos.</div>
+																								          
 											</div>
 										</md-input-container>
 
 										<div>
-											<md-button ng-click="consultaProcess()"  class="md-raised md-primary">Consultar</md-button>
+											<md-button ng-click="consultaProcess()" ng-disabled="processForm.cui.$invalid" class="md-raised md-primary">Consultar</md-button>
 										</div>
 										
-										<md-input-container  class="Box-form">
+										<md-input-container  class="Box-form md-block">
 											<label>Fecha de denuncia</label>
-											<md-datepicker ng-model="process.fecha_denuncia"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
-										</md-input-container>	
+											<md-datepicker ng-disabled="processForm.cui.$invalid" name="fecha_denuncia" ng-model="process.fecha_denuncia" md-placeholder="Click en la fecha"></md-datepicker>
+										</md-input-container>
+
+										<md-input-container  class="Box-form md-block">
+											<label>Nombre del proceso</label>
+											<input ng-disabled="processForm.cui.$invalid" md-maxlength="30" required name="nombre" ng-model="process.nombre" />
+
+											<div class="hint" ng-if="!showHints">Nombre para recordar</div>
+
+											<div ng-messages="userForm.name.$error" ng-if="!showHints">
+												<div ng-message="required">Nombre del caso es requerido.</div>
+												<div ng-message="md-maxlength">Maximo 30 caracteres.</div>
+											</div>
+										</md-input-container>
+	
 										
 									</div>						
 
 									<div layout-gt-sm="row">
 									  <md-input-container class="Box-form md-block">
 											<label>Pais</label>
-											<md-select  ng-disabled="!process.fecha_denuncia" name="pais" id="pais" ng-model="proces.pais">
+											<md-select  ng-disabled="processForm.cui.$invalid" name="pais" id="pais" ng-model="proces.pais">
 												<md-option ng-value="pais._id" ng-repeat="pais in paises">{{pais.nombre}}</md-option>			
 											</md-select>
 											<div class="errors" ng-messages="processForm.pais.$error">
@@ -66,7 +83,7 @@
 											</div>								
 										</md-autocomplete>
 
-										<md-tooltip md-direction="top">
+										<md-tooltip md-direction="right">
 												Digitar con tildes
 										</md-tooltip>
 										<md-autocomplete class="Box-form md-block" required 
@@ -92,19 +109,33 @@
 
 									<div layout-gt-sm="row">
 										<md-input-container class="Box-form">
-												<label>Fecha de los hechos</label>
-												<md-datepicker ng-model="process.fecha_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
-											</md-input-container>
+											<label>Fecha de los hechos</label>
+											<md-datepicker ng-model="process.fecha_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+										</md-input-container>
 
-										<md-input-container class="Box-form">
-											<label>Categoria</label>
-											<md-select  name="categoria" ng-model="process.categoria">
-												<md-option ng-value="categoria._id" ng-repeat="categoria in categorias">{{categoria.nombre}}</md-option>			
-											</md-select>
-											<div class="errors" ng-messages="processForm.categoria.$error">
-												<div ng-message="required">Required</div>
-											</div>
-										</md-input-container>	
+										<md-tooltip md-direction="right">
+												Digitar con tildes
+										</md-tooltip>
+										<md-autocomplete class="Box-form md-block" required 
+																						
+											md-input-name="categoria"
+											md-selected-item="control.selectedItemCategoria"
+											md-search-text="control.searchTextCategoria"
+											md-items="item in control.buscarCategoria(control.searchTextCategoria)"
+											md-item-text="item.nombre"
+											md-require-match
+											md-delay="300"					
+											md-floating-label="Categoria"
+											ng-model="process.categoria"
+											ng-value="control.item._id"
+											md-min-length="0"
+											md-selected-item-change=control.selectedItemChangeCategoria(item)>
+
+											<div layout="row" class="item" layout-align="start center">					
+												<span md-highlight-text="control.searchTextCategoria" name="categoria">{{item.nombre}}</span>  
+											</div>								
+										</md-autocomplete>			
+										
 									</div>
 									<md-input-container class=" md-block">
 									  <label>Breve Resumen de los Hechos</label>

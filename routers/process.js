@@ -15,12 +15,6 @@ router.get("/procesos", function(req, res){
 });
 
 
-router.get("/categorias", function(req, res){	
-	Categoria.find(function(err, doc){	  	
-		res.json(doc);
-	});
-});
-
 router.get("/paises", function(req, res){	
 	Pais.find(function(err, doc){			  	
 		res.json(doc);
@@ -34,8 +28,7 @@ router.get("/departamentos", function(req, res){
 	Departamento.find({"nombre":{$regex:buscar, $options:"i"}}).populate('nacion').exec(function(err, doc){ 		
 		doc = doc.filter(function(element){
 			return element.pais == idPais;
-		}); 
-		console.log(doc);					
+		});				
 		res.json(doc);
 	});
 });
@@ -47,14 +40,14 @@ router.get("/municipios", function(req, res){
 		doc = doc.filter(function(element){
 			return element.departamento == idDepartamento;
 		});	
-
 		res.json(doc);
 	});
 });
 
 
 router.get("/categorias", function(req, res){	
-	Categoria.find(function(err, doc){	  	
+	var buscar =req.query.q;
+	Categoria.find({"nombre":{$regex:buscar, $options:"i"}}).exec(function(err, doc){	  	
 		res.json(doc);
 	});
 });
