@@ -44,16 +44,36 @@
 												<div ng-message="required">Nombre del caso es requerido.</div>
 												<div ng-message="md-maxlength">Maximo 30 caracteres.</div>
 											</div>
-										</md-input-container>
-	
-										
-									</div>						
+										</md-input-container>									
+									</div>				
+									<md-divider></md-divider>
+									<div layout-gt-sm="row">
+										<table class="table table-hover table-mc-light-blue">
+											<thead>					
+												<tr>													
+													<th>Pais</th>
+													<th>Departamento</th>
+													<th>Ciudad</th>																							
+													<th>Acciones</th>
+												
+												</tr>					
+											</thead>
+											<tbody>											
+												<tr ng-repeat="registro in lugares" >
+													<td>{{registro.pais}}</td>
+													<td>{{registro.departamento}}</td>
+													<td>{{registro.municipio}}</td>													
+													<td><md-button class="md-raised md-warn" ng-click="remove(lugar)">Eliminar</md-button></td>			
+												</tr>												
+											</tbody>
+										</table>		
+									</div>		
 
 									<div layout-gt-sm="row">
 									  <md-input-container class="Box-form md-block">
 											<label>Pais</label>
 											<md-select  ng-disabled="processForm.cui.$invalid" name="pais" id="pais" ng-model="proces.pais">
-												<md-option ng-value="pais._id" ng-repeat="pais in paises">{{pais.nombre}}</md-option>			
+												<md-option ng-value="pais" ng-repeat="pais in paises">{{pais.nombre}}</md-option>			
 											</md-select>
 											<div class="errors" ng-messages="processForm.pais.$error">
 												<div ng-message="required">Required</div>
@@ -104,7 +124,8 @@
 											<div layout="row" class="item" layout-align="start center">					
 												<span md-highlight-text="control.searchTextMunicipio" name="municipio">{{item.nombre}}</span>  
 											</div>								
-										</md-autocomplete>					 
+										</md-autocomplete>	
+										<md-button class="md-primary md-raised" ng-click="agregarLugarHechos()">Agregar</md-button>				 
 									</div>
 
 									<div layout-gt-sm="row">

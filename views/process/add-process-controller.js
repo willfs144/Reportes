@@ -2,6 +2,9 @@
 app.controller("addProcessController", function($scope, $http, $filter){
 
 
+ $scope.lugares = [];
+ var lugar = {};
+
   $scope.process = {
     cui:"",
     fecha_denuncia: new Date(),      
@@ -41,7 +44,7 @@ app.controller("addProcessController", function($scope, $http, $filter){
 
 
   this.buscarDepartamento = function(buscar){   
-    return $http({method:'GET', url:'/process/departamentos',params: {q:buscar, r: $scope.proces.pais}})//capturar el uno
+    return $http({method:'GET', url:'/process/departamentos',params: {q:buscar, r: $scope.proces.pais._id}})//capturar el uno
       .then(function(response){       
         return response.data;     
       });
@@ -50,6 +53,7 @@ app.controller("addProcessController", function($scope, $http, $filter){
   this.selectedItemChangeDepartamento = function(item){
     try{
       $scope.proces.departamento = item._id;
+      lugar.departamento = item.nombre;
     }catch(e){        
       alert("Campo vacio",e);
     }
@@ -64,7 +68,9 @@ app.controller("addProcessController", function($scope, $http, $filter){
 
   this.selectedItemChangeMunicipio = function(item){
     try{
-      $scope.process.lugar_hechos = item._id;
+      $scope.process.lugar_hechos = lugar.ubicacion = item._id;
+      lugar.municipio = item.nombre;
+
     }catch(e){        
       alert("Campo vacio",e);
     }
@@ -81,6 +87,15 @@ app.controller("addProcessController", function($scope, $http, $filter){
     error(function(data,status,headers,config){
       console.log(data);
     });
+  }
+
+ 
+  $scope.agregarLugarHechos = function(){
+
+    lugar.pais = $scope.proces.pais.nombre;
+    $scope.lugares.push(lugar);
+    lugar = {};
+    console.log($scope.lugares);
   }
 
 
