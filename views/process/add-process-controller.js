@@ -1,9 +1,12 @@
 'use strict';
-app.controller("addProcessController", function($scope, $http, $filter){
+app.controller("addProcessController", function($scope, $http, $filter, $location){
 
+var self = this;
+  
 
  $scope.lugares = [];
  var lugar = {};
+ var ubicacion = [];
 
   $scope.process = {
     cui:"",
@@ -13,14 +16,15 @@ app.controller("addProcessController", function($scope, $http, $filter){
   }
 
 
-  	$scope.consultaProcess = function(){       
+  /*$scope.consultaProcess = function(){       
       alert(""+$scope.process.cui);
       $http({method:'GET', url:'/process/procesos',params: {idNoticia:$scope.process.cui}})
         .then(function(process){         
       });     
 
-    }
+    }*/
 
+ 
  $http({method:'GET', url:'process/paises'})
     .success(function(response){      
      $scope.paises = response;      
@@ -55,7 +59,7 @@ app.controller("addProcessController", function($scope, $http, $filter){
       $scope.proces.departamento = item._id;
       lugar.departamento = item.nombre;
     }catch(e){        
-      alert("Campo vacio",e);
+      //alert("Campo vacio",e);
     }
   }
 
@@ -68,11 +72,28 @@ app.controller("addProcessController", function($scope, $http, $filter){
 
   this.selectedItemChangeMunicipio = function(item){
     try{
-      $scope.process.lugar_hechos = lugar.ubicacion = item._id;
+      lugar.ubicacion = item._id;
+      ubicacion.push(item._id);
       lugar.municipio = item.nombre;
 
     }catch(e){        
-      alert("Campo vacio",e);
+      //alert("Campo vacio",e);
+    }
+  }
+
+   this.buscarFiscal = function(buscar){    
+    return $http({method:'GET', url:'user/buscarFiscal',params: {q:buscar, r:$scope.user.oficina.dependencia}})
+      .then(function(response){
+        return response.data;     
+      });
+  }
+
+  this.selectedItemChangeFiscal = function(item){
+    try{
+      $scope.process.fiscal = item._id
+
+    }catch(e){        
+      //alert("Campo vacio",e);
     }
   }
 
@@ -82,21 +103,51 @@ app.controller("addProcessController", function($scope, $http, $filter){
     $http({method:'POST',url:'process/procesos',headers : { 'Content-Type': 'application/json' }, data:$scope.process})
       .success(function(response){
         alert("Recibimos los datos");
-        $scope.process = {};
+        $scope.process = {};       
+        $location.path('/addprocess');
+
     }).
     error(function(data,status,headers,config){
       console.log(data);
     });
+
+    
   }
 
  
   $scope.agregarLugarHechos = function(){
-
     lugar.pais = $scope.proces.pais.nombre;
+    $scope.process.lugar_hechos = ubicacion;
     $scope.lugares.push(lugar);
-    lugar = {};
-    console.log($scope.lugares);
+    limpiar();
   }
 
+  $scope.eliminarLugarHechos = function(idMunicipio){
+
+    $scope.lugares = $scope.lugares.filter(function(element){
+       console.log(idMunicipio);
+      return element.ubicacion != idMunicipio;
+    });
+
+   ubicacion = ubicacion.filter(function(element){
+    return element != idMunicipio;
+   });
+   $scope.process.lugar_hechos = ubicacion;
+    limpiar();
+  }
+
+  function limpiar(){  
+    lugar = {};    
+    console.log($scope.process);
+    $scope.proces = {}; 
+
+
+    self.searchTextMunicipio = '';
+    self.selectedItemMunicipio= null;
+    self.searchTextDepartamento= '';
+    self.selectedItemDepartamento =null;
+   
+  }
+  
 
   });

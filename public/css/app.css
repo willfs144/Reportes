@@ -19,6 +19,14 @@
 .black{
 	background: #222;
 }
+.text-black{
+   font-weight: normal;
+   font-style: italic;
+   font-size: 12px;
+}
+.bottom-space{
+ padding-bottom:20px;
+}
 .white-text{
 	color:white;
 }
@@ -240,9 +248,7 @@ div.marco {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  text-align: left;
-  padding: 1.6rem;
-  vertical-align: top;
+  text-align: left;  
   border-top: 0;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -254,7 +260,7 @@ div.marco {
   vertical-align: bottom;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
-/*.table > caption + thead > tr:first-child > th,
+.table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
 .table > thead:first-child > tr:first-child > th,
 .table > caption + thead > tr:first-child > td,

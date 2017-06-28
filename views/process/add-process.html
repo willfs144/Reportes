@@ -46,9 +46,10 @@
 											</div>
 										</md-input-container>									
 									</div>				
-									<md-divider></md-divider>
+									
+									<div><label class="hint">Lugar de los hechos.</label></div>
 									<div layout-gt-sm="row">
-										<table class="table table-hover table-mc-light-blue">
+										<table class="table table-hover table-mc-light-blue border">
 											<thead>					
 												<tr>													
 													<th>Pais</th>
@@ -63,7 +64,7 @@
 													<td>{{registro.pais}}</td>
 													<td>{{registro.departamento}}</td>
 													<td>{{registro.municipio}}</td>													
-													<td><md-button class="md-raised md-warn" ng-click="remove(lugar)">Eliminar</md-button></td>			
+													<td><md-button class="md-raised md-warn" ng-click="eliminarLugarHechos(registro.ubicacion)">Eliminar</md-button></td>			
 												</tr>												
 											</tbody>
 										</table>		
@@ -84,7 +85,7 @@
 												Digitar con tildes
 										</md-tooltip>
 										<md-autocomplete  class="Box-form md-block" required 														
-											
+											ng-disabled="!proces.pais" 
 											md-input-name="Departamento"
 											md-selected-item="control.selectedItemDepartamento"
 											md-search-text="control.searchTextDepartamento"
@@ -96,6 +97,7 @@
 											ng-model="proces.departamento"
 											ng-value="control.item._id"
 											md-min-length="1"
+											md-no-cache="noCacheResults"
 											md-selected-item-change=control.selectedItemChangeDepartamento(item)>
 
 											<div layout="row" class="item" layout-align="start center">					
@@ -107,7 +109,7 @@
 												Digitar con tildes
 										</md-tooltip>
 										<md-autocomplete class="Box-form md-block" required 
-																						
+											ng-disabled="!proces.departamento"											
 											md-input-name="Municipio"
 											md-selected-item="control.selectedItemMunicipio"
 											md-search-text="control.searchTextMunicipio"
@@ -119,13 +121,18 @@
 											ng-model="process.lugar_hechos"
 											ng-value="control.item._id"
 											md-min-length="0"
+											md-no-cache="noCacheResults"
 											md-selected-item-change=control.selectedItemChangeMunicipio(item)>
-
+											
 											<div layout="row" class="item" layout-align="start center">					
 												<span md-highlight-text="control.searchTextMunicipio" name="municipio">{{item.nombre}}</span>  
 											</div>								
 										</md-autocomplete>	
-										<md-button class="md-primary md-raised" ng-click="agregarLugarHechos()">Agregar</md-button>				 
+										<div>
+											<md-button ng-disabled="!proces.departamento" class="md-primary md-raised" ng-click="agregarLugarHechos()">Agregar</md-button>	
+										</div>
+										
+													 
 									</div>
 
 									<div layout-gt-sm="row">
@@ -155,12 +162,35 @@
 											<div layout="row" class="item" layout-align="start center">					
 												<span md-highlight-text="control.searchTextCategoria" name="categoria">{{item.nombre}}</span>  
 											</div>								
-										</md-autocomplete>			
+										</md-autocomplete>	
+
+										<md-tooltip md-direction="right">
+												Digitar con tildes
+										</md-tooltip>
+										<md-autocomplete class="Box-form md-block" required 
+																						
+											md-input-name="fiscal"
+											md-selected-item="control.selectedItemFiscal"
+											md-search-text="control.searchTextFiscal"
+											md-items="item in control.buscarFiscal(control.searchTextFiscal)"
+											md-item-text="item.nombre"
+											md-require-match
+											md-delay="300"					
+											md-floating-label="Fiscal"
+											ng-model="process.fiscal"
+											ng-value="control.item._id"
+											md-min-length="0"
+											md-selected-item-change=control.selectedItemChangeFiscal(item)>
+
+											<div layout="row" class="item" layout-align="start center">					
+												<span md-highlight-text="control.searchTextFiscal" name="fiscal">{{item.nombre}} - {{item.oficina.nombre}}</span>  
+											</div>								
+										</md-autocomplete>				
 										
 									</div>
 									<md-input-container class=" md-block">
 									  <label>Breve Resumen de los Hechos</label>
-									  <textarea ng-model="process.relato_hechos" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+									  <textarea ng-model="process.relato_hechos" md-maxlength="500" rows="5" md-select-on-focus></textarea>
 									</md-input-container>
 									
 									<md-button ng-click="guardarProcess()"  layout-wrap class="md-raised md-primary" >Guardar Noticia</md-button> 

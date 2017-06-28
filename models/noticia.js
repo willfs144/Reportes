@@ -7,6 +7,7 @@ var process_schema = new Schema({
 				required: "El numero noticia criminal es obligatorio", 
 				minlength:[21, "minimo 21 caracteres noticia criminal."], 
 				maxlength:[21, "maximo 21 caracteres noticia criminal"]},
+	nombre: String,
 	fecha_denuncia: Date,	
 	fecha_hechos: Date,
 	relato_hechos: { type: String, 

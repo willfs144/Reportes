@@ -81,11 +81,10 @@ app.get("/calendario", function(solicitud, respuesta){
 
 
 
-
 app.post("/usuario", function(req, res){	
 	
 	var id=req.query.idUsuario;	
-	User.findById(id, {username:true, correo:true, nombre:true}, function(err, user){
+	User.findById(id, {username:true, correo:true, nombre:true, perfil:true, oficina:true}).populate('oficina').exec(function(err, user){
 		res.json(user);
 	});
 });
@@ -147,6 +146,7 @@ app.get("/buscarOficina", function(req, res){
 		res.json(doc);
 	});
 });
+
 
 app.get("/usuarioEstadoLoad", function(req, res){	
 	Estado.find({tipo:USUARIO},function(err, doc){ 

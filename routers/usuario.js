@@ -18,4 +18,29 @@ router.post("/login", function(req, res){
 	});	
 });
 
+/*app.get("/buscarOficina", function(req, res){
+	var buscar =req.query.q;
+	var id = req.query.r;	
+	
+	Oficina.find({"nombre":{$regex:buscar, $options:"i"}}).populate('dependencia').populate('ciudad').exec(function(err, doc){ 		
+		doc = doc.filter(function(element){
+			return element.dependencia._id == id;
+		}); 		
+		res.json(doc);
+	});
+});*/
+
+router.get("/buscarFiscal", function(req, res){
+	var buscar =req.query.q;
+	var id = req.query.r;	
+	var idFiscal= '592452ed36766dea5b473215';
+	User.find({"nombre":{$regex:buscar, $options:"i"}}).populate('cargo').populate('oficina').exec(function(err, doc){
+		doc = doc.filter(function(element){
+			return (element.oficina.dependencia== id) && (element.cargo._id== idFiscal);
+		});
+		res.json(doc);
+	});	
+});
+
+
 module.exports = router;
