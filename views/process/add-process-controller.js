@@ -1,5 +1,5 @@
 'use strict';
-app.controller("addProcessController", function($scope, $http, $filter, $location){
+app.controller("addProcessController", function($scope, $http, $filter,$route, $mdDialog){
 
 var self = this;
   
@@ -16,13 +16,13 @@ var self = this;
   }
 
 
-  /*$scope.consultaProcess = function(){       
-      alert(""+$scope.process.cui);
+  $scope.consultaProcess = function(){      
       $http({method:'GET', url:'/process/procesos',params: {idNoticia:$scope.process.cui}})
-        .then(function(process){         
-      });     
-
-    }*/
+        .then(function(data){  
+         if(data)
+          mensaje();                
+        });
+  }
 
  
  $http({method:'GET', url:'process/paises'})
@@ -109,9 +109,10 @@ var self = this;
     $http({method:'POST',url:'process/procesos',headers : { 'Content-Type': 'application/json' }, data:$scope.process})
       .success(function(response){
        alert("Recibimos los datos");
+       $route.reload();
        $scope.process={};
        $scope.lugares={};
-       limpiar();
+       limpiar();     
 
     }).
     error(function(data,status,headers,config){
@@ -144,11 +145,8 @@ var self = this;
   }
 
   function limpiar(){  
-    lugar = {};    
-    console.log($scope.process);
+    lugar = {};        
     $scope.proces = {}; 
-
-
     self.searchTextCategoria = '';
     self.selectedItemCategoria= null;
     self.searchTextFiscal = '';
@@ -156,8 +154,24 @@ var self = this;
     self.searchTextMunicipio = '';
     self.selectedItemMunicipio= null;
     self.searchTextDepartamento= '';
-    self.selectedItemDepartamento =null;
-   
+    self.selectedItemDepartamento =null;   
+  }
+
+  function mensaje() {
+      $mdDialog.show(
+        $mdDialog.alert()
+          .clickOutsideToClose(true)
+          .title('Proceso ya esta registrado')
+          .textContent('Verifique numero de noticia criminal y vuelva a intentarlo')        
+          .ok('ok!')
+          .openFrom({
+          top: -50,
+          width: 30,
+          height: 80
+        }).closeTo({
+          left: 1500
+        })         
+      );
   }
   
 

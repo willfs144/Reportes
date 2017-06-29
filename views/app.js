@@ -23,11 +23,16 @@ app.config(['$routeProvider',
 			controller: 'addProcessController',
 			controller: 'dashboardController'
 		}).
+		when('/addaudience',{
+			templateUrl: 'audience/add-audience.html',
+			controller: 'addAudienceController',
+			controller: 'dashboardController'
+		}).
 		when('/calendar',{
 			templateUrl: 'calendar/calendario.html',
 			controller: 'myNgController',
 			controller: 'dashboardController'
-		}).
+		}).		
 		otherwise({
 			redirectTo: '/'
 			});
@@ -37,7 +42,7 @@ app.config(['$routeProvider',
 
 
 app.run(function($rootScope, $location, sessionService){
-	var routespermission= ['/dashboard','/addprocess','/calendar'];
+	var routespermission= ['/dashboard','/addprocess','/addaudience','/calendar'];
 	$rootScope.$on('$routeChangeStart', function(){
 		if(routespermission.indexOf($location.path()) !=-1 && !sessionService.isLogged()){
 			$location.path("/");
@@ -65,11 +70,11 @@ app.config(function($mdDateLocaleProvider) {
   $mdDateLocaleProvider.msgOpenCalendar = 'Abrir calendario';
 
    $mdDateLocaleProvider.formatDate = function(date) {
-      return moment(date).format('MM/DD/YYYY');
+      return moment(date).format('DD/MM/YYYY');
     };
   
      $mdDateLocaleProvider.parseDate = function(dateString) {
-      var m = moment(dateString, 'MM/DD/YYYY', true);
+      var m = moment(dateString, 'DD/MM/YYYY', true);
       return m.isValid() ? m.toDate() : new Date(NaN);
     }
 });

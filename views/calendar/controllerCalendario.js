@@ -75,8 +75,8 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
             selectable: true, 
             selectHelper: true,
             select: function(start, end){
-                var fromDate = moment(start).format('YYYY/MM/DD LT');
-                var endDate = moment(end).format('YYYY/MM/DD LT');
+                var fromDate = moment(start).format('DD/MM/YYYY LT');
+                var endDate = moment(end).format('DD/MM/YYYY LT');
                 $scope.NewEvent = {
                     EventID: 0,
                     StartAt: fromDate, 
@@ -90,8 +90,8 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
             }, 
             eventClick: function (event) {
                 $scope.SelectedEvent = event;
-                var fromDate = moment(event.start).format('YYYY/MM/DD LT');
-                var endDate = moment(event.end).format('YYYY/MM/DD LT');
+                var fromDate = moment(event.start).format('DD/MM/YYYY LT');
+                var endDate = moment(event.end).format('DD/MM/YYYY LT');
                 $scope.NewEvent = {
                     EventID: event.id,
                     StartAt: fromDate, 

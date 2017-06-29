@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 //estructura de la tabla
 var process_schema = new Schema({
-	cui: {type: String, 
+	cui: {type: String, unique: true, 
 				required: "El numero noticia criminal es obligatorio", 
 				minlength:[21, "minimo 21 caracteres noticia criminal."], 
 				maxlength:[21, "maximo 21 caracteres noticia criminal"]},

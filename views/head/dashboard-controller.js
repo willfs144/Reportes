@@ -13,7 +13,7 @@ app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav) {
 
 app.controller("dashboardController", function($scope,$http,sessionService){
 
-	$scope.menu = [
+	$scope.menuProcess = [
     {
       link : 'addprocess',
       title: 'Agregar Proceso',
@@ -30,7 +30,7 @@ app.controller("dashboardController", function($scope,$http,sessionService){
       icon: 'message'
     }    
   ];
-  $scope.admin = [
+  $scope.adminAudience = [
     {
       link : 'addaudience',
       title: 'Agregar Audiencia',
