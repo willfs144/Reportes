@@ -110,6 +110,12 @@ db.estados.insert({"_id":20, nombre:'Noticia'})
 db.estados.insert({"_id":21, nombre:'Activo', tipo:20})
 db.estados.insert({"_id":22, nombre:'Inactivo', tipo:20})
 
+db.etapas.insert({"_id":02, nombre:'INDAGACIÓN'})
+db.etapas.insert({"_id":03, nombre:'INVESTIGACIÓN'})
+db.etapas.insert({"_id":04, nombre:'JUICIO'})
+
+
+
 db.categorias.insert({"_id":01, nombre:"CIBERDELINCUENCIA - HURTO POR MEDIO INFORMÁTICO"})
 db.categorias.insert({"_id":02, nombre:"CIBERDELINCUENCIA – ACCESO ABUSIVO A SISTEMAS INFORMÁTICOS"})
 db.categorias.insert({"_id":03, nombre:"CIBERDELINCUENCIA – INTERCEPTACIÓN ILÍCITA DE COMUNICACIONES"})

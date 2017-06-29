@@ -31,7 +31,7 @@
 										
 										<md-input-container  class="Box-form md-block">
 											<label>Fecha de denuncia</label>
-											<md-datepicker ng-disabled="processForm.cui.$invalid" name="fecha_denuncia" ng-model="process.fecha_denuncia" md-placeholder="Click en la fecha"></md-datepicker>
+											<md-datepicker required  ng-disabled="processForm.cui.$invalid" name="fecha_denuncia" ng-model="process.fecha_denuncia" md-placeholder="Click en la fecha"></md-datepicker>
 										</md-input-container>
 
 										<md-input-container  class="Box-form md-block">
@@ -84,7 +84,7 @@
 										<md-tooltip md-direction="top">
 												Digitar con tildes
 										</md-tooltip>
-										<md-autocomplete  class="Box-form md-block" required 														
+										<md-autocomplete  class="Box-form md-block"  														
 											ng-disabled="!proces.pais" 
 											md-input-name="Departamento"
 											md-selected-item="control.selectedItemDepartamento"
@@ -108,7 +108,7 @@
 										<md-tooltip md-direction="right">
 												Digitar con tildes
 										</md-tooltip>
-										<md-autocomplete class="Box-form md-block" required 
+										<md-autocomplete class="Box-form md-block" 
 											ng-disabled="!proces.departamento"											
 											md-input-name="Municipio"
 											md-selected-item="control.selectedItemMunicipio"
@@ -138,7 +138,7 @@
 									<div layout-gt-sm="row">
 										<md-input-container class="Box-form">
 											<label>Fecha de los hechos</label>
-											<md-datepicker ng-model="process.fecha_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
+											<md-datepicker required  ng-model="process.fecha_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
 										</md-input-container>
 
 										<md-tooltip md-direction="right">
@@ -190,7 +190,7 @@
 									</div>
 									<md-input-container class=" md-block">
 									  <label>Breve Resumen de los Hechos</label>
-									  <textarea ng-model="process.relato_hechos" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+									  <textarea ng-model="process.relato_hechos" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
 									</md-input-container>
 									
 									<md-button ng-click="guardarProcess()"  layout-wrap class="md-raised md-primary" >Guardar Noticia</md-button> 

@@ -34,6 +34,7 @@ var self = this;
   this.buscarCategoria= function(buscar){    
     return $http({method:'GET', url:'process/categorias',params: {q:buscar}})
       .then(function(response){
+        console.log(response);
         return response.data;     
       });
   }
@@ -42,7 +43,7 @@ var self = this;
     try{
       $scope.process.categoria = item._id;
     }catch(e){        
-      alert("Campo vacio",e);
+      //alert("Campo vacio",e);
     }
   }
 
@@ -91,6 +92,8 @@ var self = this;
   this.selectedItemChangeFiscal = function(item){
     try{
       $scope.process.fiscal = item._id
+      $scope.process.ubicacion = item.oficina._id;
+
 
     }catch(e){        
       //alert("Campo vacio",e);
@@ -98,13 +101,17 @@ var self = this;
   }
 
   $scope.guardarProcess= function(){ 
+    $scope.process.estado =21;
+    $scope.process.etapa =2;
+    $scope.process.usuario = $scope.user._id;
     console.log($scope.process);
 
     $http({method:'POST',url:'process/procesos',headers : { 'Content-Type': 'application/json' }, data:$scope.process})
       .success(function(response){
-        alert("Recibimos los datos");
-        $scope.process = {};       
-        $location.path('/addprocess');
+       alert("Recibimos los datos");
+       $scope.process={};
+       $scope.lugares={};
+       limpiar();
 
     }).
     error(function(data,status,headers,config){
@@ -142,6 +149,10 @@ var self = this;
     $scope.proces = {}; 
 
 
+    self.searchTextCategoria = '';
+    self.selectedItemCategoria= null;
+    self.searchTextFiscal = '';
+    self.selectedItemFiscal= null;
     self.searchTextMunicipio = '';
     self.selectedItemMunicipio= null;
     self.searchTextDepartamento= '';

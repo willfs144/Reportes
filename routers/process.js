@@ -47,7 +47,8 @@ router.get("/municipios", function(req, res){
 
 router.get("/categorias", function(req, res){	
 	var buscar =req.query.q;
-	Categoria.find({"nombre":{$regex:buscar, $options:"i"}}).exec(function(err, doc){	  	
+	Categoria.find({"nombre":{$regex:buscar, $options:"i"}}, function(err, doc){
+		console.log(doc);	  	
 		res.json(doc);
 	});
 });
