@@ -1,5 +1,5 @@
 //var app = angular.module('myApp', ['ui.calendar', 'ui.bootstrap']); // added u.bootstrap for modal dialog
-app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarConfig', '$uibModal', function ($scope, $mdDialog,$http, uiCalendarConfig, $uibModal) {
+app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarConfig', '$uibModal', '$mdpTimePicker', '$http', '$filter','$route',function ($scope, $mdDialog,$http, uiCalendarConfig, $uibModal, $mdpTimePicker, $http, $filter,$route) {
     
     $scope.SelectedEvent = null;
     var isFirstTime = true;   
@@ -9,6 +9,8 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
 
     $scope.events = [];
     $scope.eventSources = [$scope.events];
+
+
 
     $scope.NewEvent = {};
     // this function for ge datetime form json date 
@@ -20,6 +22,8 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
             return "";
 
     }
+
+
  
  function clearCalendar(){
     if(uiCalendarConfig.calendars.myCalendar != null){
@@ -45,8 +49,7 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
                     end: new Date(value.EndAt),
                     allDay : value.IsFullDay,
                     stick: true
-                });
-                console.log(new Date(value.StartAt));
+                });                
             });
 
         });
@@ -77,14 +80,21 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
             select: function(start, end){
                 var fromDate = moment(start).format('DD/MM/YYYY LT');
                 var endDate = moment(end).format('DD/MM/YYYY LT');
+                var f = new Date(fromDate)
                 $scope.NewEvent = {
                     EventID: 0,
                     StartAt: fromDate, 
                     EndAt: endDate, 
+                    fecha: new Date(end),
+                    hora: f || new Date(endDate),
                     IsFullDay: false, 
                     Title: '', 
                     Description: ''
                 }
+                 if(isNaN($scope.NewEvent.hora.getTime())){
+                        $scope.NewEvent.hora = new Date();
+                    }
+               console.log("fecha:  "+$scope.NewEvent.hora);
                 //$scope.ShowModal();
                  $scope.showAdvanced();
             }, 
@@ -92,14 +102,17 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
                 $scope.SelectedEvent = event;
                 var fromDate = moment(event.start).format('DD/MM/YYYY LT');
                 var endDate = moment(event.end).format('DD/MM/YYYY LT');
+                //var fecha = moment(start).format('DD/MM/YYYY');
                 $scope.NewEvent = {
                     EventID: event.id,
                     StartAt: fromDate, 
                     EndAt: endDate, 
+                    fecha: new Date(event.end),
+                    hora: fromDate.split('GMT-'),
                     IsFullDay: false, 
                     Title: event.title, 
                     Description: event.description
-                }
+                }                
                 //$scope.ShowModal();
             },              
             eventAfterAllRender: function () {
@@ -133,6 +146,10 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
 
 
     $scope.showAdvanced = function() {
+
+
+
+
     $mdDialog.show({
       controller: DialogController,
       templateUrl: 'calendar/modal-dialog-alert.html',
@@ -141,6 +158,7 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
       fullscreen: $scope.customFullscreen, // Only for -xs, -sm breakpoints.
       locals: {
        NewEvent: $scope.NewEvent
+     
      }
     })
     .then(function(answer) {
@@ -202,6 +220,44 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
     }*/
 
 
+ 
+
+  this.buscarMunicipio = function(buscar){    
+    return $http({method:'GET', url:'process/municipios',params: {q:buscar, r:$scope.proces.departamento}})
+      .then(function(response){
+        return response.data;     
+      });
+  }
+
+  this.selectedItemChangeMunicipio = function(item){
+    try{
+      lugar.ubicacion = item._id;
+      ubicacion.push(item._id);
+      lugar.municipio = item.nombre;
+
+    }catch(e){        
+      //alert("Campo vacio",e);
+    }
+  }
+
+   this.buscarFiscal = function(buscar){    
+    return $http({method:'GET', url:'user/buscarFiscal',params: {q:buscar, r:$scope.user.oficina.dependencia}})
+      .then(function(response){
+        return response.data;     
+      });
+  }
+
+  this.selectedItemChangeFiscal = function(item){
+    try{
+      $scope.process.fiscal = item._id
+      $scope.process.ubicacion = item.oficina._id;
+
+
+    }catch(e){        
+      //alert("Campo vacio",e);
+    }
+  }
+
     
  
 }]);
@@ -225,10 +281,33 @@ app.controller('modalController', ['$scope','$mdDialog','$uibModalInstance', 'Ne
          $uibModalInstance.dismiss('cancel');
     }
 
+     this.buscarDepartamento = function(buscar){   
+    return $http({method:'GET', url:'/process/departamentos',params: {q:buscar, r: $scope.proces.pais._id}})//capturar el uno
+      .then(function(response){       
+        return response.data;     
+      });
+  }
+
+  this.selectedItemChangeDepartamento = function(item){
+    try{
+      $scope.proces.departamento = item._id;
+      lugar.departamento = item.nombre;
+    }catch(e){        
+      //alert("Campo vacio",e);
+    }
+  }
+
 }]);
 
 
-function DialogController($scope, $mdDialog, NewEvent) {
+function DialogController($scope, $mdDialog, NewEvent, $http, $filter,$route) {
+    $http({method:'GET', url:'process/paises'})
+    .success(function(response){      
+     $scope.paises = response;      
+  });
+
+
+
     $scope.NewEvent = NewEvent;
     $scope.Message = "";
     $scope.hide = function() {
@@ -242,6 +321,8 @@ function DialogController($scope, $mdDialog, NewEvent) {
     $scope.answer = function(answer) {
       $mdDialog.hide(answer);
     };
+
+    
   }
 
 

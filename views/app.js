@@ -1,5 +1,5 @@
 //Define an angular module for our app
-var app = angular.module('sampleApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ui.calendar', 'ui.bootstrap']);
+var app = angular.module('sampleApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ui.calendar', 'ui.bootstrap', 'mdPickers']);
 
 //rutas del inicio session
 app.config(['$routeProvider',
@@ -32,6 +32,7 @@ app.config(['$routeProvider',
 			templateUrl: 'calendar/calendario.html',
 			controller: 'myNgController',
 			controller: 'dashboardController'
+
 		}).		
 		otherwise({
 			redirectTo: '/'
