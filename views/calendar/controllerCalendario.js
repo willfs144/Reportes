@@ -10,7 +10,7 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
     $scope.events = [];
     $scope.eventSources = [$scope.events];
 
-
+    $scope.oneChoice=false;
 
     $scope.NewEvent = {};
     // this function for ge datetime form json date 
@@ -152,7 +152,7 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
 
     $mdDialog.show({
       controller: DialogController,
-      templateUrl: 'calendar/modal-dialog-alert.html',
+      templateUrl: 'audience/add-audience.html',
       parent: angular.element(document.body),      
       clickOutsideToClose:true,
       fullscreen: $scope.customFullscreen, // Only for -xs, -sm breakpoints.
@@ -281,21 +281,7 @@ app.controller('modalController', ['$scope','$mdDialog','$uibModalInstance', 'Ne
          $uibModalInstance.dismiss('cancel');
     }
 
-     this.buscarDepartamento = function(buscar){   
-    return $http({method:'GET', url:'/process/departamentos',params: {q:buscar, r: $scope.proces.pais._id}})//capturar el uno
-      .then(function(response){       
-        return response.data;     
-      });
-  }
-
-  this.selectedItemChangeDepartamento = function(item){
-    try{
-      $scope.proces.departamento = item._id;
-      lugar.departamento = item.nombre;
-    }catch(e){        
-      //alert("Campo vacio",e);
-    }
-  }
+    
 
 }]);
 

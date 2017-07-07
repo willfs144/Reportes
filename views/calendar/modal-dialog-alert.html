@@ -23,7 +23,7 @@
 	<button class="btn btn-danger" type="button" ng-show="NewEvent.EventID > 0" ng-click="delete()">Delete</button>
 	<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 </div> -->
-<md-dialog draggable="true">
+<md-dialog draggable="true" ng-controller="myNgController as control">
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
