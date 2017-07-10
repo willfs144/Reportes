@@ -3,7 +3,7 @@ app.controller("addAudienceController", function($scope, $http, $filter,$route, 
 
 
 	var self = this;
-   $scope.oneChoice=true;
+  $scope.oneChoice=false;
 
  $scope.lugares = [];
  var lugar = {};
@@ -58,7 +58,7 @@ $http({method:'GET', url:'process/paises'})
   }
 
    this.buscarFiscal = function(buscar){    
-    return $http({method:'GET', url:'user/buscarFiscal',params: {q:buscar, r:$scope.user.oficina.dependencia}})
+    return $http({method:'GET', url:'user/buscarFiscal',params: {q:buscar, r:encontrarOficina()}})
       .then(function(response){
         return response.data;     
       });
@@ -73,6 +73,15 @@ $http({method:'GET', url:'process/paises'})
     }catch(e){        
       //alert("Campo vacio",e);
     }
+  }
+
+  function encontrarOficina(){    
+    if( $scope.user != null)
+      return  $scope.user.oficina.dependencia;
+    if($scope.NewEvent.user.oficina.dependencia)
+      return $scope.NewEvent.user.oficina.dependencia;
+    else
+      return '';
   }
   
 

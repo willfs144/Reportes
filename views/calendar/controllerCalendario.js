@@ -6,11 +6,12 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
 
       $scope.status = '  ';
       $scope.customFullscreen = false;
+     
 
     $scope.events = [];
     $scope.eventSources = [$scope.events];
 
-    $scope.oneChoice=false;
+   
 
     $scope.NewEvent = {};
     // this function for ge datetime form json date 
@@ -89,7 +90,8 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
                     hora: f || new Date(endDate),
                     IsFullDay: false, 
                     Title: '', 
-                    Description: ''
+                    Description: '',
+                    user: $scope.user 
                 }
                  if(isNaN($scope.NewEvent.hora.getTime())){
                         $scope.NewEvent.hora = new Date();
@@ -97,6 +99,7 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
                console.log("fecha:  "+$scope.NewEvent.hora);
                 //$scope.ShowModal();
                  $scope.showAdvanced();
+                 console.log("datos:  "+$scope.user.oficina._id);
             }, 
             eventClick: function (event) {
                 $scope.SelectedEvent = event;
@@ -152,13 +155,12 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
 
     $mdDialog.show({
       controller: DialogController,
-      templateUrl: 'audience/add-audience.html',
+      templateUrl: 'calendar/modal-dialog-alert.html',
       parent: angular.element(document.body),      
       clickOutsideToClose:true,
       fullscreen: $scope.customFullscreen, // Only for -xs, -sm breakpoints.
       locals: {
-       NewEvent: $scope.NewEvent
-     
+       NewEvent: $scope.NewEvent        
      }
     })
     .then(function(answer) {
@@ -220,45 +222,6 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
     }*/
 
 
- 
-
-  this.buscarMunicipio = function(buscar){    
-    return $http({method:'GET', url:'process/municipios',params: {q:buscar, r:$scope.proces.departamento}})
-      .then(function(response){
-        return response.data;     
-      });
-  }
-
-  this.selectedItemChangeMunicipio = function(item){
-    try{
-      lugar.ubicacion = item._id;
-      ubicacion.push(item._id);
-      lugar.municipio = item.nombre;
-
-    }catch(e){        
-      //alert("Campo vacio",e);
-    }
-  }
-
-   this.buscarFiscal = function(buscar){    
-    return $http({method:'GET', url:'user/buscarFiscal',params: {q:buscar, r:$scope.user.oficina.dependencia}})
-      .then(function(response){
-        return response.data;     
-      });
-  }
-
-  this.selectedItemChangeFiscal = function(item){
-    try{
-      $scope.process.fiscal = item._id
-      $scope.process.ubicacion = item.oficina._id;
-
-
-    }catch(e){        
-      //alert("Campo vacio",e);
-    }
-  }
-
-    
  
 }]);
 
