@@ -7,10 +7,10 @@ var Ciudad = require("../models/ciudad").ciudad;
 var Categoria = require("../models/categoria").categoria;
 
 
+
 router.get("/procesos", function(req, res){	
-	
-	Noticia.find({cui:req.query.idNoticia}, function(err, proces){
-		res.json(proces);		
+	Noticia.findOne({cui:req.query.idNoticia}).populate('etapa').populate('estado').populate('fiscal').exec(function(err, doc){
+		res.json(doc);		
 	});
 });
 

@@ -24,7 +24,7 @@ app.config(['$routeProvider',
 			controller: 'dashboardController'
 		}).
 		when('/addaudience',{
-			templateUrl: 'audience/add-audience.html',
+			templateUrl: 'audience/add-audience.html',			
 			controller: 'addAudienceController',
 			controller: 'dashboardController'
 		}).

@@ -10,6 +10,7 @@ var Sede = require("./models/sede").sede;
 var Dependencia = require("./models/dependencia").dependencia;
 var Oficina = require("./models/oficina").oficina;
 var Estado = require("./models/estado").estado;
+var Etapa = require("./models/etapa").etapa;
 var Cargo = require("./models/cargo").cargo;
 
 //rutas por modulos macros

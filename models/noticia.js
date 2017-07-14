@@ -16,7 +16,7 @@ var process_schema = new Schema({
 	lugar_hechos: [{type: Number, ref: "Ciudad"}],    
 	fiscal:{ type: Schema.Types.Mixed, ref: "User"},
 	usuario:{ type: Schema.Types.Mixed, ref: "User"},	
-	etapa: {type: Schema.Types.Mixed, ref: "Etapa"},
+	etapa: {type: Number,  ref: "Etapa"},
 	categoria: {type: Schema.Types.Mixed, ref: "Categoria"},
 	estado: {type: Number, ref: "Estado"},
 	ubicacion: {type:  Schema.Types.Mixed, ref: "Oficina"}

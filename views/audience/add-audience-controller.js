@@ -4,10 +4,8 @@ app.controller("addAudienceController", function($scope, $http, $filter,$route, 
 
 	var self = this;
   $scope.oneChoice=false;
+  $scope.valido = true;
 
- $scope.lugares = [];
- var lugar = {};
- var ubicacion = [];
 
   $scope.process = {
     cui:"",
@@ -16,7 +14,82 @@ app.controller("addAudienceController", function($scope, $http, $filter,$route, 
     relato_hechos:""    
   }
 
+   if( $scope.user != null){
+      $scope.NewEvent =
+      {
+        fecha: new Date(),
+        hora: new Date(), 
+        horaFinal: new Date()
+      }
+    }
 
+
+
+/*$scope.consultaProcess = function(){      
+      $http({method:'GET', url:'/process/procesos',params: {idNoticia:$scope.process.cui}})
+        .then(function(proceso){  
+         if(proceso){
+          $scope.process = proceso.data;
+          $scope.valido = false;
+        }  
+         else{
+           $mdDialog.show(
+              $mdDialog.alert()
+                .clickOutsideToClose(true)
+                .title('PROCESO NO SE ENCUENTRA REGISTRADO')
+                .textContent('Verifique numero de noticia criminal y vuelva a intentarlo')        
+                .ok('ok!')
+                .openFrom({
+                top: -50,
+                width: 30,
+                height: 80
+              }).closeTo({
+                left: 1500
+              })         
+            );
+         }
+      });
+  }*/
+
+   $scope.consultaProcess = function(){      
+      $http({method:'GET', url:'/process/procesos',params: {idNoticia:$scope.process.cui}})
+        .success(function(proceso){  
+         if(!proceso){
+           mensaje();          
+         }
+         else{
+          $scope.process = proceso;
+          $scope.valido = false; 
+          self.selectedItemFiscal = proceso.fiscal.nombre;
+
+         
+          //self.searchTextFiscal = 'j';
+          //self.selectedItemChangeFiscal(self.searchTextFiscal); 
+          console.log(proceso);      
+         }                        
+        });
+  }
+
+ function mensaje() {
+      $mdDialog.show(
+        $mdDialog.alert()
+          .clickOutsideToClose(true)
+          .title('Proceso no se encuentra registrado')
+          .textContent('Verifique numero de noticia criminal y vuelva a intentarlo')        
+          .ok('ok!')
+          .openFrom({
+          top: -50,
+          width: 30,
+          height: 80
+        }).closeTo({
+          left: 1500
+        })         
+      );
+  }
+  
+
+
+ 
 $http({method:'GET', url:'process/paises'})
     .success(function(response){      
      $scope.paises = response;      
@@ -76,14 +149,22 @@ $http({method:'GET', url:'process/paises'})
   }
 
   function encontrarOficina(){    
-    if( $scope.user != null)
+    if( $scope.user != null){    
       return  $scope.user.oficina.dependencia;
+    }
     if($scope.NewEvent.user.oficina.dependencia)
       return $scope.NewEvent.user.oficina.dependencia;
     else
       return '';
   }
   
+
+
+
+  
+
+
+   
 
     /*$scope.tabClicked = function(tab) {
     	console.log(tab);

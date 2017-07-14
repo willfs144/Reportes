@@ -3,7 +3,7 @@
         <h2 class="md-display-1 blue-text">Agregar Audiencia</h2>   
         <md-content layout-padding> 
           <div>
-            <form name="processForm">
+            <form name="diligenciaForm">
               <div layout-gt-sm="row">
                 <md-input-container class="Box-form" >
 					<label>Número Noticia Criminal.</label>
@@ -11,7 +11,7 @@
 
 					<div class="hint" ng-if="!showHints">Ingrese número del proceso.</div>
 
-					<div ng-messages="processForm.cui.$error" ng-if="!showHints">												 
+					<div ng-messages="diligenciaForm.cui.$error" ng-if="!showHints">												 
 						<div ng-message="required">Número del proceso es requerido.</div>												
 						<div ng-message="minlength">Minimo 21 dígitos.</div>												
 						<div ng-message="md-maxlength">Maximo 21 dígitos.</div>  
@@ -20,16 +20,16 @@
 					</div>
 				</md-input-container>
 				<div>
-					<md-button ng-click="consultaProcess()" ng-disabled="processForm.cui.$invalid" class="md-raised md-primary">Consultar</md-button>
+					<md-button ng-click="consultaProcess()" ng-disabled="diligenciaForm.cui.$invalid" class="md-raised md-primary">Consultar</md-button>
 				</div>			
                 
               
                 <md-input-container  class="Box-form md-block">
                   <label>Fecha diligencia</label>
-                  <md-datepicker required  ng-disabled="diligenciaForm.cui.$invalid" name="fecha_diligencia" ng-model="NewEvent.fecha" md-placeholder="Click en la fecha">{{NewEvent.fecha}}</md-datepicker>
+                  <md-datepicker required  ng-disabled="valido" name="fecha_diligencia" ng-model="NewEvent.fecha" md-placeholder="Click en la fecha">{{NewEvent.fecha}}</md-datepicker>
                 </md-input-container>
 
-                <mdp-time-picker  class="md-block" mdp-auto-switch="true" name="timeFormat" ng-model="NewEvent.hora" mdp-format="hh:mm A">
+                <mdp-time-picker  required  ng-disabled="valido" class="md-block" mdp-auto-switch="true" name="timeFormat" ng-model="NewEvent.hora" mdp-format="hh:mm A">
                  <label>Hora inicio</label>
                 <div class="hint" ng-if="!showHints">Click icono hora.</div>
                 <div ng-messages="diligenciaForm.timeFormat.$error">
@@ -38,7 +38,7 @@
                 </div>
               </mdp-time-picker>  
 
-                <mdp-time-picker  class="md-block" mdp-auto-switch="true" name="timeFormat" ng-model="NewEvent.horaFinal" mdp-format="hh:mm A">
+                <mdp-time-picker ng-disabled="valido" class="md-block" mdp-auto-switch="true" name="timeFormat" ng-model="NewEvent.horaFinal" mdp-format="hh:mm A">
                  <label>Hora final</label>
                 <div class="hint" ng-if="!showHints">Click icono hora.</div>
                 <div ng-messages="diligenciaForm.timeFormat.$error">
@@ -47,24 +47,31 @@
                 </div>
               </mdp-time-picker>                                       
               </div> 
+              <md-subheader class="md-no-sticky"><b><I>Datos del proceso: </I></b></md-subheader>                         
               <div layout-gt-sm="row">
 				<md-input-container  class="Box-form md-block">
 					<label>Nombre del proceso</label>
-					<input ng-disabled="processForm.cui.$invalid" md-maxlength="30" required name="nombre" ng-model="process.nombre" />
+					<input ng-disabled="true" name="nombre" ng-model="process.nombre" />
 
 					<div class="hint" ng-if="!showHints">Nombre para recordar</div>
 
-					<div ng-messages="userForm.name.$error" ng-if="!showHints">
-						<div ng-message="required">Nombre del caso es requerido.</div>
-						<div ng-message="md-maxlength">Maximo 30 caracteres.</div>
-					</div>
+					
+				</md-input-container>
+
+				<md-input-container  class="Box-form md-block">
+					<label>Etapa del Proceso</label>
+					<input ng-disabled=true name="etapa" ng-model="process.etapa.nombre" />					
+				</md-input-container>
+
+				<md-input-container  class="Box-form md-block">
+					<label>Estado del proceso</label>
+					<input ng-disabled="true" name="etapa" ng-model="process.estado.nombre" />
 				</md-input-container>
     		
                <md-tooltip md-direction="right">
 						Digitar con tildes
 				</md-tooltip>
-				<md-autocomplete class="Box-form md-block" required 
-																
+				<md-autocomplete class="Box-form md-block" required  ng-disabled="valido"																
 					md-input-name="fiscal"
 					md-selected-item="control.selectedItemFiscal"
 					md-search-text="control.searchTextFiscal"
@@ -79,15 +86,16 @@
 					md-selected-item-change=control.selectedItemChangeFiscal(item)>
 
 					<div layout="row" class="item" layout-align="start center">					
-						<span md-highlight-text="control.searchTextFiscal" name="fiscal">{{item.nombre}} - {{item.oficina.nombre}}</span>  
+						<span md-highlight-text="control.searchTextFiscal" md-highlight-flags="^i" name="fiscal">{{item.nombre}} - {{item.oficina.nombre}}</span>  
 					</div>								
 				</md-autocomplete>				
 
               </div> 
+              <md-subheader class="md-no-sticky"><b><I>Lugar de la diligencia: </I></b></md-subheader> 
               <div layout-gt-sm="row">
-                <md-input-container class="Box-form md-block">
+                <md-input-container class="Box-form md-block" >
 					<label>Pais</label>
-					<md-select  ng-disabled="processForm.cui.$invalid" name="pais" id="pais" ng-model="proces.pais">
+					<md-select  ng-disabled="valido" name="pais" id="pais" ng-model="proces.pais">
 						<md-option ng-value="pais" ng-repeat="pais in paises">{{pais.nombre}}</md-option>			
 					</md-select>
 					<div class="errors" ng-messages="processForm.pais.$error">
@@ -144,7 +152,7 @@
 				</md-autocomplete>	                                                 
               </div>
 
-              <md-button ng-click="guardarProcess()"  layout-wrap class="md-raised md-primary" >Guardar Diligencia</md-button> 
+              <md-button ng-disabled="!process.lugar_hechos" ng-click="guardarProcess()"  layout-wrap class="md-raised md-primary" >Guardar Diligencia</md-button> 
 
 			</form>				
 			</div>					
