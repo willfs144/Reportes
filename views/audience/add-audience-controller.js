@@ -61,9 +61,7 @@ app.controller("addAudienceController", function($scope, $http, $filter,$route, 
           $scope.process = proceso;
           $scope.valido = false; 
           self.selectedItemFiscal = proceso.fiscal.nombre;
-
-         
-          //self.searchTextFiscal = 'j';
+          self.searchTextFiscal = proceso.fiscal.nombre;
           //self.selectedItemChangeFiscal(self.searchTextFiscal); 
           console.log(proceso);      
          }                        

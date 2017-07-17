@@ -49,9 +49,9 @@ app.get("/calendario", function(solicitud, respuesta){
 			  {
 			    "Title": " Fiscal 2:  Adiencia Formulacion de Imputación",
 			    "Description": "A las 8:00 am con el Juez 01 penal de Control de Garantias",
-			    "StartAt": "05/10/2017",
-			    "EndAt": "05/10/2017",
-			    "IsFullDay": false
+			    "StartAt": "2017-05-24T05:00:00.000Z",
+			    "EndAt": "2017-05-24T05:00:00.000Z",
+			    "IsFullDay": true
 			  },
 			  {
 			    "Title": " Fiscal 3: Adiencia Juicio Oral",

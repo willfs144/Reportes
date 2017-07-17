@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 //estructura de la tabla
-var process_schema = new Schema({
+var audiencia_schema = new Schema({
 	cui: {type: String, unique: true, 
 				required: "El numero noticia criminal es obligatorio", 
 				minlength:[21, "minimo 21 caracteres noticia criminal."], 
@@ -22,6 +22,6 @@ var process_schema = new Schema({
 	ubicacion: {type:  Schema.Types.Mixed, ref: "Oficina"}
 });
 
-var noticia = mongoose.model('noticia', process_schema); 
+var audiencia = mongoose.model('audiencia', audiencia_schema); 
 
-module.exports.noticia = noticia;
+module.exports.audiencia = audiencia;
