@@ -16,6 +16,7 @@ var Cargo = require("./models/cargo").cargo;
 //rutas por modulos macros
 var Rusuario = require("./routers/usuario");
 var Rprocess = require("./routers/process");
+var Raudience = require("./routers/audience");
 
 
 //var session_middleware = require("./middlewares/session");
@@ -49,8 +50,8 @@ app.get("/calendario", function(solicitud, respuesta){
 			  {
 			    "Title": " Fiscal 2:  Adiencia Formulacion de Imputación",
 			    "Description": "A las 8:00 am con el Juez 01 penal de Control de Garantias",
-			    "StartAt": "2017-05-24T05:00:00.000Z",
-			    "EndAt": "2017-05-24T05:00:00.000Z",
+			    "StartAt": "2017-07-17T05:00:00.000Z",
+			    "EndAt": "2017-07-20T05:00:00.000Z",
 			    "IsFullDay": true
 			  },
 			  {
@@ -171,6 +172,7 @@ var port = process.env.PORT || 2409;
 //Usando Rutas
 app.use('/user', Rusuario);
 app.use('/process', Rprocess);
+app.use('/audience', Raudience);
 
 app.listen(port, function() {  
   console.log('Express server listening on port ' + port);

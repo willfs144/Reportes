@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var juzgado_schema = new Schema({	
 	_id: Number,
 	nombre: String,		
-	ciudad: {type: Number, ref: "Ciudad"}
+	ciudad: {type: Number, ref: "Ciudad"},
 	telefono: String,
 	correo: { type: String, 
 				required: "El correo es obligatorio.",  

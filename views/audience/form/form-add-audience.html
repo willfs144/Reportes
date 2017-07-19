@@ -88,7 +88,15 @@
 					<div layout="row" class="item" layout-align="start center">					
 						<span md-highlight-text="control.searchTextFiscal" md-highlight-flags="^i" name="fiscal">{{item.nombre}} - {{item.oficina.nombre}}</span>  
 					</div>								
-				</md-autocomplete>				
+				</md-autocomplete>
+				
+				<div class="md-block">
+				 <md-checkbox   ng-model="audiencia.apoyo" >
+				Fiscal de apoyo: {{audiencia.apoyo}}
+				</md-checkbox>			
+					
+				</div>
+					
 
               </div> 
               <md-subheader class="md-no-sticky"><b><I>Lugar de la diligencia: </I></b></md-subheader> 
@@ -149,7 +157,28 @@
 					<div layout="row" class="item" layout-align="start center">					
 						<span md-highlight-text="control.searchTextMunicipio" name="municipio">{{item.nombre}}</span>  
 					</div>								
-				</md-autocomplete>	                                                 
+				</md-autocomplete>	
+
+				<md-autocomplete class="Box-form md-block" 
+					ng-disabled="!process.lugar_hechos"											
+					md-input-name="juez"
+					md-selected-item="control.selectedItemJuez"
+					md-search-text="control.searchTextJuez"
+					md-items="item in control.buscarJuez(control.searchTextJuez)"
+					md-item-text="item.nombre"
+					md-require-match
+					md-delay="300"					
+					md-floating-label="Juez"
+					ng-model="process.lugar_hechos"
+					ng-value="control.item._id"
+					md-min-length="0"
+					md-no-cache="noCacheResults"
+					md-selected-item-change=control.selectedItemChangeJuez(item)>
+					
+					<div layout="row" class="item" layout-align="start center">					
+						<span md-highlight-text="control.searchTextJuez" name="juez">{{item.nombre}}</span>  
+					</div>								
+				</md-autocomplete>	                                                      
               </div>
 
               <md-button ng-disabled="!process.lugar_hechos" ng-click="guardarProcess()"  layout-wrap class="md-raised md-primary" >Guardar Diligencia</md-button> 

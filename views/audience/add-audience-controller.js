@@ -5,6 +5,7 @@ app.controller("addAudienceController", function($scope, $http, $filter,$route, 
 	var self = this;
   $scope.oneChoice=false;
   $scope.valido = true;
+  $scope.lugar=null;
 
 
   $scope.process = {
@@ -103,8 +104,7 @@ $http({method:'GET', url:'process/paises'})
 
   this.selectedItemChangeDepartamento = function(item){
     try{
-      $scope.proces.departamento = item._id;
-      lugar.departamento = item.nombre;
+      $scope.proces.departamento = item._id;     
     }catch(e){        
       //alert("Campo vacio",e);
     }
@@ -119,10 +119,7 @@ $http({method:'GET', url:'process/paises'})
 
   this.selectedItemChangeMunicipio = function(item){
     try{
-      lugar.ubicacion = item._id;
-      ubicacion.push(item._id);
-      lugar.municipio = item.nombre;
-
+      $scope.lugar = item._id;
     }catch(e){        
       //alert("Campo vacio",e);
     }
@@ -141,6 +138,22 @@ $http({method:'GET', url:'process/paises'})
       $scope.process.ubicacion = item.oficina._id;
 
 
+    }catch(e){        
+      //alert("Campo vacio",e);
+    }
+  }
+
+  this.buscarJuez = function(buscar){    
+    return $http({method:'GET', url:'audience/juzgados',params: {q:buscar, r:$scope.lugar}})
+      .then(function(response){
+        console.log(response);
+        return response.data;     
+      });
+  }
+
+  this.selectedItemChangeJuez = function(item){
+    try{
+      $scope.process.juez = item._id;
     }catch(e){        
       //alert("Campo vacio",e);
     }

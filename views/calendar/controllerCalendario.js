@@ -227,7 +227,7 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
 
 // create a new controller for modal 
 
-app.controller('modalController', ['$scope','$mdDialog','$uibModalInstance', 'NewEvent',function($scope, $mdDialog, $uibModalInstance, NewEvent){
+/*app.controller('modalController', ['$scope','$mdDialog','$uibModalInstance', 'NewEvent',function($scope, $mdDialog, $uibModalInstance, NewEvent){
     $scope.NewEvent = NewEvent;
     $scope.Message = "";
     $scope.ok = function(){
@@ -246,18 +246,14 @@ app.controller('modalController', ['$scope','$mdDialog','$uibModalInstance', 'Ne
 
     
 
-}]);
+}]);*/
 
 
 function DialogController($scope, $mdDialog, NewEvent, $http, $filter,$route) {
-    $http({method:'GET', url:'process/paises'})
-    .success(function(response){      
-     $scope.paises = response;      
-  });
-
-
+   
 
     $scope.NewEvent = NewEvent;
+    console.log("tomelo: "+$scope.process);
     $scope.Message = "";
     $scope.hide = function() {
       $mdDialog.hide();
