@@ -252,9 +252,7 @@ app.controller('myNgController', ['$scope', '$mdDialog', '$http', 'uiCalendarCon
 function DialogController($scope, $mdDialog, NewEvent, $http, $filter,$route) {
    
 
-    $scope.NewEvent = NewEvent;
-    console.log("tomelo: "+$scope.process);
-    $scope.Message = "";
+    $scope.NewEvent = NewEvent;    
     $scope.hide = function() {
       $mdDialog.hide();
     };
