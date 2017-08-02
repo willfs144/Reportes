@@ -71,7 +71,9 @@
                <md-tooltip md-direction="right">
 						Digitar con tildes
 				</md-tooltip>
-				<md-autocomplete class="Box-form md-block" required  ng-disabled="valido"																
+				<md-autocomplete class="Box-form md-block" required  ng-disabled="valido"			
+					md-autofocus="true"
+					md-autoselect="true"													
 					md-input-name="fiscal"
 					md-selected-item="control.selectedItemFiscal"
 					md-search-text="control.searchTextFiscal"
@@ -83,6 +85,7 @@
 					ng-model="process.fiscal"
 					ng-value="control.item._id"
 					md-min-length="0"
+					md-no-cache="noCacheResults"
 					md-selected-item-change=control.selectedItemChangeFiscal(item)>
 
 					<div layout="row" class="item" layout-align="start center">					

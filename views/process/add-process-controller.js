@@ -18,9 +18,12 @@ var self = this;
 
   $scope.consultaProcess = function(){      
       $http({method:'GET', url:'/process/procesos',params: {idNoticia:$scope.process.cui}})
-        .then(function(data){  
-         if(data)
-          mensaje();                
+        .success(function(data){  
+         if(data != null){
+          console.log(data);
+          mensaje();  
+         }
+                        
         });
   }
 
