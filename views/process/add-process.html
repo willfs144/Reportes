@@ -164,6 +164,18 @@
 											</div>								
 										</md-autocomplete>	
 
+										<md-chips ng-model='process.categoria'  class="Box-form md-block" md-autocomplete-snap md-autocomplete-wrap-override>
+											<md-autocomplete 
+												md-input-name="Modus Operandi"
+												md-floating-label="Modus Operandi"
+												md-items="item in control.buscarCategoria(control.searchTextCategoria)">
+												<span><strong>{{item.nombre}}</strong>: {{item.nombre}}</span>
+											</md-autocomplete>
+											<md-chip-template>
+												{{$chip.nombre}}
+											</md-chip-template>
+										</md-chips>
+
 										<md-tooltip md-direction="right">
 												Digitar con tildes
 										</md-tooltip>
