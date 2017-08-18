@@ -162,19 +162,28 @@
 											<div layout="row" class="item" layout-align="start center">					
 												<span md-highlight-text="control.searchTextCategoria" name="categoria">{{item.nombre}}</span>  
 											</div>								
-										</md-autocomplete>	
+										</md-autocomplete>
 
-										<md-chips ng-model='process.categoria'  class="Box-form md-block" md-autocomplete-snap md-autocomplete-wrap-override>
+										<!--<md-chips ng-model='process.categoria' flex="80"    md-autocomplete-snap md-autocomplete-wrap-override>
 											<md-autocomplete 
+												flex="80"
 												md-input-name="Modus Operandi"
 												md-floating-label="Modus Operandi"
-												md-items="item in control.buscarCategoria(control.searchTextCategoria)">
-												<span><strong>{{item.nombre}}</strong>: {{item.nombre}}</span>
+												md-selected-item="control.selectedItemCategoria"
+												md-search-text="control.searchTextCategoria"
+												md-items="item in control.buscarCategoria(control.searchTextCategoria)"
+												md-item-text="item.nombre"
+												md-min-length="0"
+												md-select-on-match="true"
+												md-match-case-insensitive="true"
+												md-no-cache="true"
+												>
+												<span><strong>{{item.nombre}}</strong></span>
 											</md-autocomplete>
 											<md-chip-template>
 												{{$chip.nombre}}
 											</md-chip-template>
-										</md-chips>
+										</md-chips> -->
 
 										<md-tooltip md-direction="right">
 												Digitar con tildes
@@ -192,6 +201,9 @@
 											ng-model="process.fiscal"
 											ng-value="control.item._id"
 											md-min-length="0"
+											md-select-on-match="true"
+											md-match-case-insensitive="true"
+											md-no-cache="true"
 											md-selected-item-change=control.selectedItemChangeFiscal(item)>
 
 											<div layout="row" class="item" layout-align="start center">					

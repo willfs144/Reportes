@@ -72,18 +72,20 @@ db.cargos.insert({nombre:"Secretario Administrativo II"})
 db.cargos.insert({nombre:"Secretario Administrativo III"})
 
 //sedes
-db.sedes.insert({_id:ObjectId("589ceac40fa62ed7ff18572b"),nombre:"Director de Fiscalías Nacionales"})
-db.sedes.insert({nombre:"Director Nacional de Articulación de Fiscalías Nacionales Especializadas"})
+db.sedes.insert({_id:ObjectId("589ceac40fa62ed7ff18572b"), nombre:"Dirección Especializada contra las Violaciones a los Derechos Humanos"})
+db.sedes.insert({_id:ObjectId("599701b000474164f6c43e3e"), nombre:"Dirección Especializada contra las Organizaciones Criminares"})
+db.sedes.insert({_id:ObjectId("599701b100474164f6c43e3f"), nombre:"Dirección Especializada contra el Narcotrafico"})
+db.sedes.insert({_id:ObjectId("599701b100474164f6c43e40"), nombre:"Dirección Especializada contra la Corrupción"})
+db.sedes.insert({_id:ObjectId("599701b200474164f6c43e41"), nombre:"Dirección de Justicia Transicional"})
 
+ 
 //Dependencias 
 
 db.dependencias.insert({_id: ObjectId("58a32b1a0fa62ed7ff18578e"), nombre:"Protección de la Propiedad Intelectual, las Telecomunicaciones, los Bienes Culturales de la Nación y la Moneda Legal", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
 db.dependencias.insert({nombre:"Protección de los Recursos Naturales y el Medio Ambiente", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
 db.dependencias.insert({nombre:"Desaparición y Desplazamiento Forzado", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
-db.dependencias.insert({nombre:"Corrupción en Administración de Justicia", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
+db.dependencias.insert({nombre:"Corrupción en Administración de Justicia", "sede" : ObjectId("599701b100474164f6c43e40")})
 db.dependencias.insert({nombre:"Protección a los Mecanismos de Participación Democrática", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
-db.dependencias.insert({nombre:"Departamento Interceptación de las Telecomunicaciones", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
-db.dependencias.insert({nombre:"Centro Estratégico de Valoración y Análisis Probatorio", "sede" : ObjectId("589ceac40fa62ed7ff18572b")})
 
 
 db.oficinas.insert({nombre:"Fiscalia 1", "dependencia" : ObjectId("58a32b1a0fa62ed7ff18578e"), ciudad:11001})
@@ -116,10 +118,61 @@ db.etapas.insert({"_id":04, nombre:'JUICIO'})
 
 
 
-db.categorias.insert({"_id":01, nombre:"CIBERDELINCUENCIA - HURTO POR MEDIO INFORMÁTICO"})
-db.categorias.insert({"_id":02, nombre:"CIBERDELINCUENCIA – ACCESO ABUSIVO A SISTEMAS INFORMÁTICOS"})
-db.categorias.insert({"_id":03, nombre:"CIBERDELINCUENCIA – INTERCEPTACIÓN ILÍCITA DE COMUNICACIONES"})
-db.categorias.insert({"_id":04, nombre:"CORRUPCIÓN – SOBORNO"})
+db.categorias.insert({"_id":01, nombre:"Medicamentos"})
+db.categorias.insert({"_id":02, nombre:"Licores"})
+db.categorias.insert({"_id":03, nombre:"Libros"})
+db.categorias.insert({"_id":04, nombre:"Armas de Fuego"})
+db.categorias.insert({"_id":05, nombre:"Obras de Arte"})
+db.categorias.insert({"_id":06, nombre:"Software"})
+db.categorias.insert({"_id":07, nombre:"Musica"})
+db.categorias.insert({"_id":08, nombre:"Peliculas"})
+db.categorias.insert({"_id":09, nombre:"Video Juegos"})
+db.categorias.insert({"_id":10, nombre:"Patente"})
+db.categorias.insert({"_id":11, nombre:"Diseño industrial"})
+db.categorias.insert({"_id":12, nombre:"Alimentos"})
+db.categorias.insert({"_id":13, nombre:"Productos de belleza"})
+db.categorias.insert({"_id":14, nombre:"Moneda falsa"})
+db.categorias.insert({"_id":15, nombre:"Especies silvestres"})
+db.categorias.insert({"_id":16, nombre:"Arboles o Madera"})
+db.categorias.insert({"_id":17, nombre:"peces"})
+db.categorias.insert({"_id":18, nombre:"agua"})
+db.categorias.insert({"_id":19, nombre:"suelo"})
+db.categorias.insert({"_id":20, nombre:"piedras preciosas"})
+db.categorias.insert({"_id":21, nombre:"materiales explosivos"})
+db.categorias.insert({"_id":22, nombre:"Personas"})
+db.categorias.insert({"_id":23, nombre:"Estupefacientes"})
+db.categorias.insert({"_id":24, nombre:"Vehiculos"})
+db.categorias.insert({"_id":25, nombre:"Datos"})
+
+
+db.modus.insert({"_id":01, nombre:"Comercialización"})
+db.modus.insert({"_id":02, nombre:"Falsificación"})
+db.modus.insert({"_id":03, nombre:"Fabricación"})
+db.modus.insert({"_id":04, nombre:"Tala"})
+db.modus.insert({"_id":04, nombre:"Pesca"})
+db.modus.insert({"_id":04, nombre:"Contaminación"})
+db.modus.insert({"_id":04, nombre:"Hurto"})
+db.modus.insert({"_id":04, nombre:"Distribución"})
+db.modus.insert({"_id":04, nombre:"Adulteración"})
+db.modus.insert({"_id":04, nombre:"Homicidio"})
+db.modus.insert({"_id":04, nombre:"Amenaza"})
+db.modus.insert({"_id":04, nombre:"Trafico"})
+db.modus.insert({"_id":04, nombre:"Secuestro"})
+db.modus.insert({"_id":04, nombre:"Terrorismo"})
+db.modus.insert({"_id":04, nombre:"Contrabando"})
+db.modus.insert({"_id":04, nombre:"Almacenamiento"})
+db.modus.insert({"_id":04, nombre:"Trata"})
+db.modus.insert({"_id":04, nombre:"Explotar"})
+db.modus.insert({"_id":04, nombre:"Lavados de activos"})
+db.modus.insert({"_id":04, nombre:"Manipulacion"})
+db.modus.insert({"_id":04, nombre:"Uso sin autorizacion"})
+db.modus.insert({"_id":04, nombre:"Acceso abusivo"})
+db.modus.insert({"_id":04, nombre:"Secuestro"})
+db.modus.insert({"_id":04, nombre:"Desaparición"})
+db.modus.insert({"_id":04, nombre:"Extorsion"})
+
+
+
 
  
 
