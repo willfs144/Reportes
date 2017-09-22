@@ -23,6 +23,11 @@ app.config(['$routeProvider',
 			controller: 'addProcessController',
 			controller: 'dashboardController'
 		}).
+		when('/allfindprocess', {
+			templateUrl: 'process/find-all/find-all-process.html',
+			controller: 'allFindProcessController',
+			controller: 'dashboardController'
+		}).
 		when('/addaudience',{
 			templateUrl: 'audience/add-audience.html',			
 			controller: 'addAudienceController',
@@ -43,7 +48,7 @@ app.config(['$routeProvider',
 
 
 app.run(function($rootScope, $location, sessionService){
-	var routespermission= ['/dashboard','/addprocess','/addaudience','/calendar'];
+	var routespermission= ['/dashboard','/addprocess','/allfindprocess','/addaudience','/calendar'];
 	$rootScope.$on('$routeChangeStart', function(){
 		if(routespermission.indexOf($location.path()) !=-1 && !sessionService.isLogged()){
 			$location.path("/");

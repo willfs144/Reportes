@@ -5,6 +5,7 @@ var Pais = require("../models/pais").pais;
 var Departamento = require("../models/departamento").departamento;
 var Ciudad = require("../models/ciudad").ciudad;
 var Categoria = require("../models/categoria").categoria;
+var Modus = require("../models/modus").modus;
 
 
 
@@ -48,6 +49,14 @@ router.get("/municipios", function(req, res){
 router.get("/categorias", function(req, res){	
 	var buscar =req.query.q;
 	Categoria.find({"nombre":{$regex:buscar, $options:"i"}}, function(err, doc){
+		console.log(doc);	  	
+		res.json(doc);
+	});
+});
+
+router.get("/modus", function(req, res){	
+	var buscar =req.query.q;
+	Modus.find({"nombre":{$regex:buscar, $options:"i"}}, function(err, doc){
 		console.log(doc);	  	
 		res.json(doc);
 	});

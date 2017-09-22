@@ -50,6 +50,22 @@ var self = this;
     }
   }
 
+   this.buscarModus= function(buscar){    
+    return $http({method:'GET', url:'process/modus',params: {q:buscar}})
+      .then(function(response){
+        
+        return response.data;     
+      });
+  }
+
+  this.selectedItemChangeModus= function(item){
+    try{
+      $scope.process.modus = item._id;
+    }catch(e){        
+      //alert("Campo vacio",e);
+    }
+  }
+
 
   this.buscarDepartamento = function(buscar){   
     return $http({method:'GET', url:'/process/departamentos',params: {q:buscar, r: $scope.proces.pais._id}})//capturar el uno

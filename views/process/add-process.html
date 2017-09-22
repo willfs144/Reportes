@@ -141,6 +141,26 @@
 											<md-datepicker required  ng-model="process.fecha_hechos"  md-current-view="year" md-placeholder="Click en la fecha"></md-datepicker>
 										</md-input-container>
 
+										<md-autocomplete class="Box-form md-block" required 
+																						
+											md-input-name="modus"
+											md-selected-item="control.selectedItemModus"
+											md-search-text="control.searchTextModus"
+											md-items="item in control.buscarModus(control.searchTextModus)"
+											md-item-text="item.nombre"
+											md-require-match
+											md-delay="300"					
+											md-floating-label="Modus Operandi"
+											ng-model="process.modus"
+											ng-value="control.item._id"
+											md-min-length="0"
+											md-selected-item-change=control.selectedItemChangeModus(item)>
+
+											<div layout="row" class="item" layout-align="start center">					
+												<span md-highlight-text="control.searchTextModus" name="modus">{{item.nombre}}</span>  
+											</div>								
+										</md-autocomplete>
+
 										<md-tooltip md-direction="right">
 												Digitar con tildes
 										</md-tooltip>
@@ -153,7 +173,7 @@
 											md-item-text="item.nombre"
 											md-require-match
 											md-delay="300"					
-											md-floating-label="Categoria"
+											md-floating-label="Objeto Material"
 											ng-model="process.categoria"
 											ng-value="control.item._id"
 											md-min-length="0"
@@ -163,6 +183,8 @@
 												<span md-highlight-text="control.searchTextCategoria" name="categoria">{{item.nombre}}</span>  
 											</div>								
 										</md-autocomplete>
+
+
 
 										<!--<md-chips ng-model='process.categoria' flex="80"    md-autocomplete-snap md-autocomplete-wrap-override>
 											<md-autocomplete 
@@ -225,11 +247,11 @@
 					</div>
 				</div>	
 			</md-tab>
-			<md-tab label="Indiciado" >	
+			<md-tab label="Indiciados" >	
 						
 				
 			</md-tab>
-			<md-tab label="Victima">
+			<md-tab label="Victimas">
 				
 			</md-tab>
 		</md-tabs>
