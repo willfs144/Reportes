@@ -37,7 +37,8 @@ jobs:
       with:
         context: ./
         #file: ./Dockerfile
-        run: docker-compose up -d
+        run: docker-compose -f "docker-compose.yml" up -d --build
+        #run: docker-compose up -d
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/reportes_api:latest
         
