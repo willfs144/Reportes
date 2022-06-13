@@ -13,6 +13,6 @@ EXPOSE 2409
 
 #ADD . /app
 
-COPY . .
+COPY . /app
 
 CMD ["node", "server"]
