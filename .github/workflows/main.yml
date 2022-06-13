@@ -13,9 +13,8 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-
-build:
-
+jobs:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,7 +38,7 @@ build:
         context: ./
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/sql-server:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/reportes_api:latest
         
     - name: digest de la imagen
       run: echo ${{ steps.docker_build.outputs.digest }}
