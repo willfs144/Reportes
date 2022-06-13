@@ -38,13 +38,19 @@ jobs:
         context: ./
         #file: ./Dockerfile
         composeFile: docker-compose.yml
-        run: docker-compose up -d
         build: true
-        #run: docker-compose up -d
+        run: docker-compose up -d
         push: true
+<<<<<<< HEAD
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/reportes_api:latest
 
     
         
+=======
+        tags: 
+          ${{ secrets.DOCKERHUB_USERNAME }}/reportes_api:latest
+
+      
+>>>>>>> eaddae1a25a618896774c363726d857c59f6e3bc
     - name: digest de la imagen
       run: echo ${{ steps.docker_build.outputs.digest }}
