@@ -1,0 +1,16 @@
+version: '3.6'
+
+services:
+  api:
+    build: .
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/estadisticas
+    ports:
+     - "2409:2409"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"

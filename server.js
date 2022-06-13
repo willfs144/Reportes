@@ -22,7 +22,8 @@ var Raudience = require("./routers/audience");
 //var session_middleware = require("./middlewares/session");
 
 var USUARIO = 1;
-mongoose.connect("mongodb://localhost/estadisticas");
+mongoose.connect("mongodb://mongodb:27017/estadisticas");
+//mongoose.connect("mongodb://localhost:27017/estadisticas");
 var app = express();
 
 app.use("/public",express.static('public'));//archivos staticos css
