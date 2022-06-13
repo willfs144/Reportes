@@ -38,16 +38,13 @@ jobs:
         context: ./
         #file: ./Dockerfile
         composeFile: docker-compose.yml
-        run: docker-compose up -d
         build: true
-        #run: docker-compose up -d
+        run: docker-compose up -d
         push: true
-        #tags: ${{ secrets.DOCKERHUB_USERNAME }}/reportes_api:latest
+        tags: |
+          reportes ${{ secrets.DOCKERHUB_USERNAME }}/reportes_api:latest
+          reportes ${{ secrets.DOCKERHUB_USERNAME }}/mongo:latest
 
-    - name: Tags
-          run: |
-            docker tag reportes ${{ secrets.DOCKERHUB_USERNAME }}/reportes_api:latest
-            docker tag reportes ${{ secrets.DOCKERHUB_USERNAME }}/mongo:latest
-        
+      
     - name: digest de la imagen
       run: echo ${{ steps.docker_build.outputs.digest }}
