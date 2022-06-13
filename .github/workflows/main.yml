@@ -41,9 +41,8 @@ jobs:
         build: true
         run: docker-compose up -d
         push: true
-        tags: |
+        tags: 
           ${{ secrets.DOCKERHUB_USERNAME }}/reportes_api:latest
-          ${{ secrets.DOCKERHUB_USERNAME }}/mongo:latest
 
       
     - name: digest de la imagen
